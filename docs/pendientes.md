@@ -62,3 +62,10 @@ Las fotos vienen del Instagram en 1080 px. Sirven, pero si existen los originale
 
 1. Horario: "Cierre: por confirmar".
 2. Formulario: "Prepara tu reserva". Se oculta sola cuando se configura WhatsApp.
+
+## 5. Fotos de referencia que NO deben publicarse
+
+En `assets/galeria/` hay fotos descargadas de la web de Eat Greek: `introduction-image.avif` (y su copia `introduction-image (1).avif`), `pizzafire.avif`, `eat-greek-jbr-table-scaled.jpg`, `greek-*.avif`, `grilled-calamari-7.avif`, `beetroot-salad-2.avif` e `ice-tea-with-figs-eat-greek.avif`. Son de otro restaurante y tienen derechos de autor.
+
+- **En uso, de forma provisional:** `introduction-image.avif` en la sección «Fatto in casa», marcada con la etiqueta «Contenido de ejemplo · foto de referencia, reemplazar». Antes de publicar, reemplázala por una foto de Positano. Ya existe una lista: `assets/ambiente/hecho-en-casa.webp` (la tostada del brunch). Lo ideal sería una foto de manos emplatando un plato de Positano, como el carpaccio o el polpo e patate.
+- **Sin usar:** las demás. Conviene borrarlas del repositorio antes de publicarlo.

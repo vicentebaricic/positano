@@ -404,6 +404,7 @@
     .split-copy .link-arrow { justify-self: start; }
     .split-media { min-height: 70svh; }
     .split-media img { position: absolute; inset: 0; }
+    .split-sample { position: absolute; left: var(--s-4); bottom: var(--s-4); z-index: 1; background: rgba(255, 255, 255, 0.92); }
     @media (min-width: 900px) {
       .split { grid-template-columns: 1fr 1fr; min-height: 100svh; }
       .split-copy { padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter))) var(--s-8); }
@@ -713,8 +714,11 @@
         <p>Los acompañamos con productos italianos: pasta Rummo, mozzarella di bufala, prosciutto, mortadella di Bologna, grana padano y café Mauro.</p>
         <a class="link-arrow" href="#carta">Ver la carta</a>
       </div>
-      <figure class="ph split-media" data-file="assets/ambiente/hecho-en-casa.webp">
-        <img src="assets/ambiente/hecho-en-casa.webp" alt="Tostada de pan de la casa con prosciutto, huevo, palta y tomate cherry" width="1080" height="1363" loading="lazy" decoding="async">
+      <!-- PROVISIONAL: foto de Eat Greek usada como referencia de composición. Reemplazar por una foto de Positano antes de publicar
+           (la de Positano lista para usar: assets/ambiente/hecho-en-casa.webp) -->
+      <figure class="ph split-media" data-file="assets/galeria/introduction-image.avif">
+        <img src="assets/galeria/introduction-image.avif" alt="Foto de referencia provisional: plato de pulpo a la parrilla" width="887" height="980" loading="lazy" decoding="async">
+        <span class="sample split-sample">Contenido de ejemplo · foto de referencia, reemplazar</span>
       </figure>
     </section>
 
