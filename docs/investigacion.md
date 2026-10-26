@@ -47,6 +47,6 @@ Ninguna afirmación de diseño de las referencias proviene de haber visto sus p�
   - Fondo claro (`--c-bg`): marfil de papel `#f4f0e9`.
   - Acento sobre claro (`--c-accent`): bronce `#7f5c2e`, el oro oscurecido para cumplir el contraste AA.
   - El tricolor queda solo en el logo, sin competir.
-- **Tipografía:** Bodoni Moda (títulos, cursiva como acento) + Instrument Sans (texto e interfaz).
+- **Tipografía (26-oct, a pedido):** una sola familia, Newsreader (Google Fonts), elegida por comparación visual con la referencia de Fenix que enviaste. Títulos con tamaño óptico 42 y cursiva como acento; texto con tamaño óptico automático. Reemplaza a Bodoni Moda + Instrument Sans. La fuente exacta de esa referencia no pude identificarla con certeza; Newsreader es la equivalente libre más cercana.
 - **Composición:** portada partida (texto 11 / foto 13), momentos escalonados, platos en grilla asimétrica (carrusel deslizable en móvil), galería con tamaños intencionales.
 - **Restricciones:** sin tarjetas redondeadas, sin degradados, sin iconos decorativos (solo el del modo claro/oscuro), animación limitada a un revelado corto y desactivada con `prefers-reduced-motion`.
