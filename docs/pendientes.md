@@ -27,13 +27,18 @@ Cada hueco de la página muestra la ruta que espera. Usa WebP, en calidad 75–8
 | `assets/identidad/apple-touch-icon.png` | iOS | 180×180 | Monograma |
 | `assets/identidad/og-positano.jpg` | Al compartir en redes | 1200×630 | Foto de portada con el nombre |
 | `assets/identidad/logo-positano.svg` | (opcional) | SVG | Hoy se usa un logotipo tipográfico; si existe un logo oficial, reemplazar `.brand` |
-| `assets/carta/carta-positano.pdf` | Carta completa | PDF | Exportar desde Drive y activar en `CONFIG.links.menuPdf` |
+| `assets/carta/carta-cucina.pdf` | Tarjeta Carta 01 | PDF | «Menú Positano.pdf» de Drive |
+| `assets/carta/carta-brunch.pdf` | Tarjeta Carta 02 | PDF | «Menú Brunch.pdf» de Drive |
+| `assets/carta/carta-bar.pdf` | Tarjeta Carta 03 | PDF | «Menú Bevande e Cocktail Bar.pdf» de Drive |
+| `assets/carta/portada-cucina.webp` | Fondo tarjeta 01 | 900×1100 | Plato de pasta o pizza |
+| `assets/carta/portada-brunch.webp` | Fondo tarjeta 02 | 900×1100 | Brunch y café |
+| `assets/carta/portada-bar.webp` | Fondo tarjeta 03 | 900×1100 | Spritz o cóctel |
 
 ## 2. Datos por confirmar
 
 - [ ] **Hora de cierre** de cada día. Tripadvisor (20:00–21:00) y Uber Eats (21:00–22:00) no coinciden. Hoy aparece "por confirmar" con la etiqueta `.sample`.
 - [ ] **Servicio de cena:** depende de la hora de cierre. Por eso el formulario no ofrece "Cena".
-- [ ] **Precios:** tomados de los PDFs de Drive (jul.–sep. 2026). Los platos cuyo precio era ambiguo en el PDF se muestran sin precio: Pasta Positano, Tortelloni, Spaghetti Santorini, Carbonara y Brunch Castelmezzano.
+- [ ] **Precios:** la carta completa (objeto `MENU` en `index.html`) viene de los PDFs de Drive (jul.–sep. 2026). Los ítems con precio `null` aparecen sin precio porque en el texto del PDF no se podía asignar con certeza: lasagna de champiñón, trilogía de lasagnas, pastas rellenas, Pasta Positano, Santorini, Amatriciana, Carbonara, frutti di mare, risottos (salvo el marino), Arma tu plato, milanesa de pollo, saltados, paellas, brownie, brunch individual, Castelmezzano y Siciliano, Benedettini, Strapazzata, omelettes, toast francese, varios cafés y tés, Chandon Brut y Chandon Rosé. Para completarlos, cambia `null` por el número.
 - [ ] **Carta Nikkei:** ¿se sirve en Av. Chicureo 847? No está incluida.
 - [ ] **Terraza o mesas exteriores:** no está confirmado.
 - [ ] **Eventos, música en vivo o celebraciones:** no se encontró información, así que la sección no se incluyó.
@@ -46,7 +51,8 @@ Cada hueco de la página muestra la ruta que espera. Usa WebP, en calidad 75–8
 | Elemento | Dónde | Estado |
 |---|---|---|
 | WhatsApp (`.js-wa`, formulario) | `CONFIG.whatsapp.number` | Vacío: los botones `.js-wa` quedan ocultos y el formulario deriva al teléfono. Al poner el número, se activan solos con mensajes prearmados (`reserva`, `carta`, `general`). |
-| Carta PDF | `CONFIG.links.menuPdf` | Vacío: el botón queda oculto. |
+| PDFs de las cartas | `CONFIG.cartas[].ready` | `false`: la tarjeta dice «PDF pendiente» y solo ofrece «Ver en línea». Sube cada PDF y cambia a `true`. Ajusta `size` si el archivo exportado pesa distinto. |
+| Carta en línea | objeto `MENU` | Activa. Abre en Colazioni hasta las 12:30, en Bar desde las 18:00 y en Cucina el resto del día. |
 | Teléfono | `CONFIG.phone` | Activo (`tel:+56229547040`). Es un fijo, no se usa como WhatsApp. |
 | Mapa | `iframe` de Google Maps (`?output=embed`, sin API key) | Activo. Verificar que el pin caiga en el local. |
 | Cómo llegar | `CONFIG.links.directions` | Activo |
@@ -58,3 +64,4 @@ Cada hueco de la página muestra la ruta que espera. Usa WebP, en calidad 75–8
 1. Galería: "Exterior".
 2. Horario: "Cierre: por confirmar".
 3. Formulario: "Prepara tu reserva". Se oculta sola cuando se configura WhatsApp.
+4. Tarjetas de carta: «PDF pendiente», hasta marcar `ready: true`.

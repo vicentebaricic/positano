@@ -77,6 +77,7 @@
       --c-ph-ink: #7a6d5d;
       --c-sample: #7a2fbf;
       --c-focus: #1d5fa8;
+      --c-accent-on-sea: #f0a47c;
 
       /* Tipografía */
       --f-display: "Bodoni Moda", "Bodoni 72", Didot, "Libre Bodoni", Georgia, serif;
@@ -136,6 +137,7 @@
         --c-ph-ink: #8d9aa6;
         --c-sample: #c79bf2;
         --c-focus: #8cc2ff;
+        --c-accent-on-sea: #eaa07a;
         --shadow-2: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
       }
     }
@@ -155,6 +157,7 @@
       --c-ph-ink: #8d9aa6;
       --c-sample: #c79bf2;
       --c-focus: #8cc2ff;
+      --c-accent-on-sea: #eaa07a;
       --shadow-2: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
     }
 
@@ -426,34 +429,102 @@
     }
 
     /* =========================================================
-       Carta
+       Carta · tarjetas de PDF + carta completa en línea
        ========================================================= */
-    .carta-layout { display: grid; gap: var(--s-6); }
-    .tablist {
-      display: flex; gap: var(--s-1); overflow-x: auto; scrollbar-width: none;
+    .carta { background: var(--c-sea); color: var(--c-sea-ink); --c-line-sea: color-mix(in srgb, var(--c-sea-ink) 16%, transparent); }
+    .carta .eyebrow, .carta .section-head .eyebrow { color: var(--c-accent-on-sea); }
+    .carta .section-head p { color: color-mix(in srgb, var(--c-sea-ink) 72%, transparent); }
+
+    /* Tarjetas: una por PDF */
+    .carta-cards { display: grid; gap: var(--s-4); margin-bottom: var(--s-9); }
+    @media (min-width: 760px) { .carta-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s-5); } }
+    .carta-card {
+      position: relative; display: grid; align-content: end; min-height: 420px; overflow: hidden;
+      border: 1px solid var(--c-line-sea); isolation: isolate;
+    }
+    .carta-card .ph { position: absolute; inset: 0; z-index: -2; background: color-mix(in srgb, var(--c-sea-ink) 7%, var(--c-sea)); }
+    .carta-card .ph.is-missing::after { place-content: start center; padding-top: var(--s-8); color: color-mix(in srgb, var(--c-sea-ink) 55%, transparent); background-image: none; }
+    .carta-card .ph img { transition: transform 900ms var(--ease); }
+    .carta-card:hover .ph img { transform: scale(1.03); }
+    /* Velo inferior: necesario para leer el texto sobre la fotografía */
+    .carta-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(8, 14, 20, 0.92) 0%, rgba(8, 14, 20, 0.55) 45%, rgba(8, 14, 20, 0.1) 100%); }
+    .carta-card-num { position: absolute; top: var(--s-5); left: var(--s-5); font-size: var(--fs-xs); letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-accent-on-sea); }
+    .carta-card-body { display: grid; gap: var(--s-3); padding: var(--s-5); color: #f4ede1; }
+    .carta-card h3 { font-size: clamp(2.2rem, 1.6rem + 2vw, 3.2rem); line-height: 1; }
+    .carta-card p { font-size: var(--fs-sm); color: rgba(244, 237, 225, 0.78); max-width: 26rem; }
+    .carta-card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-5); margin-top: var(--s-2); font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; }
+    .carta-card-actions a, .carta-card-actions button {
+      display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px;
+      background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
+      font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: none;
+    }
+    .carta-card-actions a:hover, .carta-card-actions button:hover { color: var(--c-accent-on-sea); }
+    .carta-card-actions svg { width: 14px; height: 14px; color: var(--c-accent-on-sea); }
+    .carta-card-actions .meta { color: rgba(244, 237, 225, 0.55); letter-spacing: 0.12em; }
+
+    /* Carta completa */
+    .menu-wrap { display: grid; gap: var(--s-6); }
+    .menu-aside { display: grid; gap: var(--s-5); align-content: start; }
+    .menu-aside h2 { font-size: var(--fs-2xl); line-height: 0.95; letter-spacing: -0.02em; }
+    .menu-aside .note { font-size: var(--fs-sm); color: color-mix(in srgb, var(--c-sea-ink) 72%, transparent); max-width: 22rem; }
+    .menu-cats {
+      display: flex; overflow-x: auto; scrollbar-width: none; gap: var(--s-2);
       margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
-      border-bottom: 1px solid var(--c-line);
+      border-top: 1px solid var(--c-line-sea); border-bottom: 1px solid var(--c-line-sea);
     }
-    .tablist::-webkit-scrollbar { display: none; }
-    .tab {
-      flex: 0 0 auto; background: none; border: 0; cursor: pointer;
-      padding: var(--s-3) var(--s-3); min-height: 48px;
-      font-family: var(--f-display); font-size: 1.15rem; color: var(--c-ink-soft);
-      border-bottom: 2px solid transparent; margin-bottom: -1px;
+    .menu-cats::-webkit-scrollbar { display: none; }
+    .menu-cat {
+      flex: 0 0 auto; display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
+      min-height: 56px; padding: var(--s-3) var(--s-3); background: none; border: 0; cursor: pointer;
+      color: color-mix(in srgb, var(--c-sea-ink) 55%, transparent); text-align: left;
     }
-    .tab[aria-selected="true"] { color: var(--c-ink); border-bottom-color: var(--c-accent); font-style: italic; }
-    .tab:hover { color: var(--c-ink); }
-    .panel-note { font-size: var(--fs-sm); color: var(--c-ink-soft); margin-bottom: var(--s-5); max-width: 40rem; }
-    .menu-list { display: grid; gap: var(--s-5); }
-    .menu-item { display: grid; gap: 2px; }
-    .menu-row { display: flex; align-items: baseline; gap: var(--s-2); }
-    .menu-row h3 { font-family: var(--f-display); font-size: 1.15rem; font-weight: 500; }
-    .menu-row .leader { flex: 1; border-bottom: 1px dotted var(--c-line); transform: translateY(-4px); min-width: 1.5rem; }
-    .menu-item p { font-size: var(--fs-sm); color: var(--c-ink-soft); max-width: 34rem; }
-    .carta-foot { display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-6); align-items: center; margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--c-line); font-size: var(--fs-sm); color: var(--c-ink-soft); }
+    .menu-cat .n { font-family: var(--f-display); font-size: 1.5rem; font-weight: 500; }
+    .menu-cat .l { display: none; font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; }
+    .menu-cat:hover { color: var(--c-sea-ink); }
+    .menu-cat[aria-selected="true"] { color: var(--c-accent-on-sea); }
+    .menu-cat[aria-selected="true"] .n { font-style: italic; }
+
+    .menu-main { min-width: 0; }
+    .menu-chips {
+      display: flex; gap: var(--s-2); overflow-x: auto; scrollbar-width: none;
+      margin: 0 calc(var(--gutter) * -1) var(--s-7); padding-inline: var(--gutter);
+    }
+    .menu-chips::-webkit-scrollbar { display: none; }
+    .menu-chips a {
+      flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4);
+      border: 1px solid var(--c-line-sea); text-decoration: none; white-space: nowrap;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: color-mix(in srgb, var(--c-sea-ink) 72%, transparent);
+      transition: border-color 200ms var(--ease), color 200ms var(--ease);
+    }
+    .menu-chips a:hover { border-color: var(--c-accent-on-sea); color: var(--c-sea-ink); }
+
+    .menu-sec { scroll-margin-top: calc(var(--header-h) + 16px); }
+    .menu-sec + .menu-sec { margin-top: var(--s-8); }
+    .menu-sec-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-5); margin-bottom: var(--s-5); }
+    .menu-sec-head h3 { font-size: var(--fs-xl); }
+    .menu-sec-head .rule { flex: 1 1 3rem; height: 1px; background: var(--c-line-sea); }
+    .menu-sec-head .tag { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in srgb, var(--c-sea-ink) 55%, transparent); }
+    .menu-items { display: grid; column-gap: var(--s-8); }
+    .mi { display: grid; gap: var(--s-2); padding-block: var(--s-4); border-bottom: 1px solid var(--c-line-sea); align-content: start; }
+    .mi-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); }
+    .mi h4 { font-family: var(--f-body); font-size: 0.92rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+    .mi .price { color: var(--c-accent-on-sea); font-weight: 500; font-size: var(--fs-sm); letter-spacing: 0.02em; }
+    .mi p { font-size: var(--fs-sm); color: color-mix(in srgb, var(--c-sea-ink) 68%, transparent); }
+
     @media (min-width: 760px) {
-      .menu-list { grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-8); }
-      .tablist { margin-inline: 0; padding-inline: 0; gap: var(--s-4); }
+      .menu-items { grid-template-columns: 1fr 1fr; }
+      .menu-chips { margin-inline: 0; padding-inline: 0; flex-wrap: wrap; }
+    }
+    @media (min-width: 1000px) {
+      .menu-wrap { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--s-8); align-items: start; }
+      .menu-aside { position: sticky; top: calc(var(--header-h) + var(--s-5)); min-width: 0; }
+      .menu-aside h2 { font-size: clamp(2.6rem, 1rem + 2.6vw, 4.2rem); }
+      .menu-cats { flex-direction: column; overflow: visible; margin: 0; padding: 0; gap: 0; border-top: 0; border-bottom: 0; }
+      .menu-cat { border-top: 1px solid var(--c-line-sea); padding: var(--s-4) var(--s-2); width: 100%; }
+      .menu-cat:last-child { border-bottom: 1px solid var(--c-line-sea); }
+      .menu-cat .n { font-size: 1.75rem; }
+      .menu-cat .l { display: inline; }
     }
 
     /* =========================================================
@@ -485,7 +556,7 @@
        ========================================================= */
     .visit { background: var(--c-sea); color: var(--c-sea-ink); }
     .visit .eyebrow { color: var(--c-accent); }
-    :root:not([data-theme="dark"]) .visit .eyebrow { color: #f0a47c; }
+    .visit .eyebrow { color: var(--c-accent-on-sea); }
     .visit .section-head p { color: color-mix(in srgb, var(--c-sea-ink) 75%, transparent); }
     .visit-grid { display: grid; gap: var(--s-7); }
     .visit-info { display: grid; gap: var(--s-6); align-content: start; }
@@ -569,7 +640,7 @@
     · Fotografías reales en /assets (cada hueco muestra la ruta esperada).
     · Hora de cierre por día.
     · Número de WhatsApp (CONFIG.whatsapp.number) — hoy vacío: los botones .js-wa están ocultos.
-    · PDF de la carta completa (CONFIG.links.menuPdf).
+    · PDFs de las cartas (CONFIG.cartas: subir a assets/carta/ y marcar ready: true).
     · Dominio definitivo (canonical / og:url) y logotipo oficial.
   -->
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -806,104 +877,28 @@
     </section>
 
     <!-- ===== Carta ===== -->
-    <section class="section" id="carta" aria-labelledby="carta-title">
+    <section class="section carta" id="carta" aria-labelledby="carta-title">
       <div class="container">
         <header class="section-head reveal">
-          <p class="eyebrow">La carta</p>
-          <h2 id="carta-title">Una selección de <span class="it">nuestra carta.</span></h2>
-          <p>Elige un momento del día. Los precios corresponden a la carta vigente y pueden cambiar.</p>
+          <p class="eyebrow">Le carte</p>
+          <h2 id="carta-title">Nuestras <span class="it">cartas.</span></h2>
+          <p>Ábrelas en PDF o recórrelas aquí mismo, más abajo.</p>
         </header>
 
-        <div class="carta-layout">
-          <div class="tablist" role="tablist" aria-label="Secciones de la carta">
-            <button class="tab" role="tab" id="t-colazioni" aria-controls="p-colazioni" aria-selected="true">Colazioni</button>
-            <button class="tab" role="tab" id="t-antipasti" aria-controls="p-antipasti" aria-selected="false" tabindex="-1">Antipasti</button>
-            <button class="tab" role="tab" id="t-paste" aria-controls="p-paste" aria-selected="false" tabindex="-1">Paste e risotti</button>
-            <button class="tab" role="tab" id="t-pizze" aria-controls="p-pizze" aria-selected="false" tabindex="-1">Pizze</button>
-            <button class="tab" role="tab" id="t-dolci" aria-controls="p-dolci" aria-selected="false" tabindex="-1">Dolci</button>
-            <button class="tab" role="tab" id="t-bar" aria-controls="p-bar" aria-selected="false" tabindex="-1">Bar</button>
-          </div>
+        <!-- Las tarjetas se generan desde CONFIG.cartas -->
+        <div class="carta-cards" id="carta-cards"></div>
 
-          <div class="tabpanel" role="tabpanel" id="p-colazioni" aria-labelledby="t-colazioni" tabindex="0">
-            <p class="panel-note">Brunch de lunes a viernes de 8:00 a 12:30; sábado, domingo y festivos de 9:00 a 12:30.</p>
-            <ul class="menu-list">
-              <li class="menu-item"><div class="menu-row"><h3>Brunch Positano y Compagnia</h3><span class="leader"></span><span class="price">$28.990</span></div><p>Para dos: huevos benedictinos, focaccia o pan de la casa, café o té, jugo natural y bowl de fruta con granola.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Brunch Amalfi</h3><span class="leader"></span><span class="price">$20.990</span></div><p>Para dos: huevos revueltos con pancetta, vegetales y queso, masas dulces y saladas, café y jugo.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Brunch Castelmezzano</h3></div><p>Para dos: prosciutto o salmón ahumado, palta, mermelada casera y variedad de panes.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Benedettini affumicati</h3><span class="leader"></span><span class="price">$12.990</span></div><p>Huevos benedictinos con salmón ahumado, palta y focaccia o pan de la casa.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>In camicia</h3><span class="leader"></span><span class="price">$8.390</span></div><p>Huevos pochados con palta y focaccia o pan de la casa.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Latte</h3><span class="leader"></span><span class="price">$3.990</span></div><p>Café Mauro Deluxe, leche vaporizada y espuma.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Caffè affogato</h3><span class="leader"></span><span class="price">$3.990</span></div><p>Espresso con helado de vainilla.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Infusión Positano</h3><span class="leader"></span><span class="price">$2.990</span></div><p>Menta y limón.</p></li>
-            </ul>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="p-antipasti" aria-labelledby="t-antipasti" tabindex="0" hidden>
-            <ul class="menu-list">
-              <li class="menu-item"><div class="menu-row"><h3>Bruschetta della casa</h3><span class="leader"></span><span class="price">$11.990</span></div><p>Pan de la casa, stracciatella y peperonata, con aceite balsámico y espinacas.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Arancini porcini</h3><span class="leader"></span><span class="price">$11.990</span></div><p>Risotto de porcini relleno de mozzarella, pesto y aceite de trufa.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Polpo e patate</h3><span class="leader"></span><span class="price">$12.990</span></div><p>Tentáculos de pulpo, papas doradas y mix verde.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Provoleta con tostadas</h3><span class="leader"></span><span class="price">$11.990</span></div><p>Provolone gratinado con focaccia.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Machas alla parmigiana</h3><span class="leader"></span><span class="price">$18.990</span></div><p>12 unidades.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Carpaccio de pulpo</h3><span class="leader"></span><span class="price">$15.990</span></div><p>Rúcula, grana padano, limoneta de la casa y alcaparras.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Carpaccio mar y tierra con burrata</h3><span class="leader"></span><span class="price">$26.990</span></div><p>Para compartir: salmón ahumado, prosciutto, tomate confitado, aceitunas, grana padano y burrata.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Tavola italiana</h3><span class="leader"></span><span class="price">$31.990</span></div><p>Para 2 a 3 personas: quesos, fiambres italianos y focaccia de la casa.</p></li>
-            </ul>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="p-paste" aria-labelledby="t-paste" tabindex="0" hidden>
-            <ul class="menu-list">
-              <li class="menu-item"><div class="menu-row"><h3>Lasagna de res</h3><span class="leader"></span><span class="price">$15.990</span></div><p>Ragù, bechamel, pasta de la casa y mozzarella.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Lasagna de pesto</h3><span class="leader"></span><span class="price">$15.990</span></div><p>Pesto de la casa, bechamel, pasta de la casa y mozzarella.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Tortelloni</h3></div><p>Salmón ahumado y stracciatella con salsa de alcaparras.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Pasta Positano</h3></div><p>Con centolla y crema huancaína.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Spaghetti Santorini</h3></div><p>Salsa de ajo, ají y mariscos, con almejas y erizo.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Carbonara</h3></div><p>Guanciale, pecorino romano, yema de huevo y pimienta negra. Pasta Rummo, corta o larga.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Risotto marino</h3><span class="leader"></span><span class="price">$16.290</span></div><p>Camarones y langostinos.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Menú Bambini</h3><span class="leader"></span><span class="price">$12.990</span></div><p>Para niños: proteína y acompañamiento a elección, jugo natural o bebida y mini helado.</p></li>
-            </ul>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="p-pizze" aria-labelledby="t-pizze" tabindex="0" hidden>
-            <ul class="menu-list">
-              <li class="menu-item"><div class="menu-row"><h3>Positano</h3><span class="leader"></span><span class="price">$20.390</span></div><p>Pomodoro, mozzarella, tomate cherry, champiñones, albahaca, aceituna verde y prosciutto.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Margarita</h3><span class="leader"></span><span class="price">$16.390</span></div><p>Pomodoro, mozzarella fior di latte y albahaca.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Prosciutto e rúcula</h3><span class="leader"></span><span class="price">$19.390</span></div><p>Pomodoro, mozzarella, prosciutto crudo y rúcula.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Tres quesos</h3><span class="leader"></span><span class="price">$19.390</span></div><p>Mozzarella, grana padano y gorgonzola.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Braseada</h3><span class="leader"></span><span class="price">$19.390</span></div><p>Mozzarella, braseado de res y cebolla caramelizada.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Romana</h3><span class="leader"></span><span class="price">$19.390</span></div><p>Mozzarella, jamón cotto, tocino y aceituna.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Camarón</h3><span class="leader"></span><span class="price">$18.390</span></div><p>Pomodoro, mozzarella y camarones salteados.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Bolognia</h3><span class="leader"></span><span class="price">$18.390</span></div><p>Pomodoro, mozzarella y mortadella di Bologna.</p></li>
-            </ul>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="p-dolci" aria-labelledby="t-dolci" tabindex="0" hidden>
-            <ul class="menu-list">
-              <li class="menu-item"><div class="menu-row"><h3>Tiramisú</h3><span class="leader"></span><span class="price">$5.990</span></div></li>
-              <li class="menu-item"><div class="menu-row"><h3>Volcán de chocolate</h3><span class="leader"></span><span class="price">$5.990</span></div><p>Con helado de vainilla.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Crepes Nutella</h3><span class="leader"></span><span class="price">$6.990</span></div><p>Con helado y fruta de la estación.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Torta tres leches</h3><span class="leader"></span><span class="price">$4.990</span></div><p>Porción.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Cheesecake de maracuyá</h3><span class="leader"></span><span class="price">$4.590</span></div><p>Porción.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Crostata</h3><span class="leader"></span><span class="price">$3.690</span></div><p>De membrillo, ciruela o Nutella.</p></li>
-            </ul>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="p-bar" aria-labelledby="t-bar" tabindex="0" hidden>
-            <ul class="menu-list">
-              <li class="menu-item"><div class="menu-row"><h3>Aperol spritz</h3><span class="leader"></span><span class="price">$5.990</span></div><p>Aperol, espumante, agua gasificada y naranja.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Limoncello Positano</h3><span class="leader"></span><span class="price">$6.990</span></div><p>Spritz con limoncello hecho en casa.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Negroni</h3><span class="leader"></span><span class="price">$6.690</span></div><p>Gin, Campari y Martini Rosso.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Espresso martini</h3><span class="leader"></span><span class="price">$7.990</span></div><p>Vodka, espresso y Kahlúa.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Santo Momento</h3><span class="leader"></span><span class="price">$7.290</span></div><p>De autor: gin, St-Germain, limoncello, limón y albúmina.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Caelum</h3><span class="leader"></span><span class="price">$9.500</span></div><p>De autor: gin blackberry, Ramazzotti Violetto, pomelo y granada.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Sangría Positano</h3><span class="leader"></span><span class="price">$6.390</span></div><p>Vino, triple sec, jugo de naranja y frutas.</p></li>
-              <li class="menu-item"><div class="menu-row"><h3>Positanium Blue</h3><span class="leader"></span><span class="price">$5.590</span></div><p>Sin alcohol: arándanos, curaçao y espumante cero.</p></li>
-            </ul>
-          </div>
-
-          <div class="carta-foot">
-            <a class="btn btn-ghost" data-link="menuPdf" href="#" target="_blank" rel="noopener" hidden>Descargar la carta completa (PDF)</a>
-            <p>También: ensaladas, milanesas, paellas, panini en focaccia, menú de niños, vinos chilenos por copa y botella.</p>
+        <div class="menu-wrap" id="carta-completa">
+          <aside class="menu-aside">
+            <p class="eyebrow">Con precios</p>
+            <h2>La carta <span class="it">completa.</span></h2>
+            <p class="note">Precios en pesos chilenos, según la carta vigente. Pueden variar sin previo aviso.</p>
+            <div class="menu-cats" role="tablist" aria-label="Cartas" id="menu-cats"></div>
+          </aside>
+          <div class="menu-main">
+            <nav class="menu-chips" id="menu-chips" aria-label="Secciones de la carta"></nav>
+            <div id="menu-panel" role="tabpanel" tabindex="-1"></div>
+            <noscript><p>Para ver la carta completa, activa JavaScript o llámanos al +56 2 2954 7040.</p></noscript>
           </div>
         </div>
       </div>
@@ -1084,11 +1079,355 @@
     links: {
       instagram: "https://www.instagram.com/positano_caffe_cucina/",
       maps: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Av. Chicureo 847, Colina, Chile"),
-      directions: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("Av. Chicureo 847, Colina, Chile"),
-      menuPdf: ""                   // PENDIENTE: ej. "assets/carta/carta-positano.pdf". Vacío = botón oculto.
+      directions: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("Av. Chicureo 847, Colina, Chile")
     },
+    // Una tarjeta por PDF. ready: false = el PDF aún no está subido; la tarjeta
+    // muestra «PDF pendiente» y solo ofrece ver la carta en línea.
+    cartas: [
+      {
+        id: "cucina", title: "Cucina", menu: "cucina",
+        text: "Antipasti, pastas de la casa, risottos, pizzas, ensaladas y dolci.",
+        pdf: "assets/carta/carta-cucina.pdf", size: "0,9 MB", ready: false,
+        image: "assets/carta/portada-cucina.webp"
+      },
+      {
+        id: "colazioni", title: "Colazioni", menu: "colazioni",
+        text: "Brunch, huevos, tostadas y cafetería, hasta las 12:30.",
+        pdf: "assets/carta/carta-brunch.pdf", size: "0,2 MB", ready: false,
+        image: "assets/carta/portada-brunch.webp"
+      },
+      {
+        id: "bar", title: "Bar", menu: "bar",
+        text: "Spritz, coctelería clásica y de autor, cervezas y vinos chilenos.",
+        pdf: "assets/carta/carta-bar.pdf", size: "0,2 MB", ready: false,
+        image: "assets/carta/portada-bar.webp"
+      }
+      // PENDIENTE: «Carta Positano Nikkei» existe en Drive. Agregarla aquí solo si se sirve en este local.
+    ],
     showPrices: true
   };
+
+  /* =========================================================
+     MENU · carta completa
+     Fuente: PDFs oficiales en Drive (Menú Positano jul. 2026, Menú Brunch
+     may. 2026, Bevande e Cocktail Bar sep. 2026).
+     Ítem: [nombre, precio, descripción]. Precio en CLP (número) o null cuando
+     el PDF no permite asignarlo con certeza: se muestra sin precio.
+     ========================================================= */
+  var MENU = [
+    { id: "cucina", name: "Cucina", label: "Comida", sections: [
+      { id: "antipasti", name: "Antipasti", tag: "Para compartir", items: [
+        ["Bruschetta della casa", 11990, "Dos tostadas de pan de la casa con stracciatella sobre peperonata, aceite balsámico y espinacas."],
+        ["Arancini porcini", 11990, "Bolitas de risotto de porcini rellenas de mozzarella, sobre pesto y aceite de trufa."],
+        ["Provoleta con tostadas", 11990, "Provolone gratinado con focaccia."],
+        ["Polpo e patate", 12990, "Tentáculos de pulpo, papas doradas y mix verde."],
+        ["Chorizos de la casa", 12990, "Dos unidades con tostada, chimichurri y salsa de ají amarillo."],
+        ["Camarón pil-pil", 12990, "En aceite de oliva, ajo, peperoncino, perejil y vino blanco, con tostadas."],
+        ["Filete pil-pil", 15990, "En aceite de oliva, ajo, peperoncino, perejil y vino tinto, con tostadas."],
+        ["Empanadas mechada queso", 9990, "Tres empanadas horneadas de carne mechada con mozzarella."],
+        ["Ostiones alla parmigiana", 17490, "8 unidades."],
+        ["Machas alla parmigiana", 18990, "12 unidades."],
+        ["Tavola italiana", 31990, "Para 2 a 3 personas. Grana padano, fior di latte, prosciutto cotto y crudo, salame napolitano, mortadella di Bologna, tomate cherry, albahaca y focaccia de la casa."]
+      ]},
+      { id: "crudi", name: "Carpacci e tartari", tag: "Crudos", items: [
+        ["Carpaccio de salmón", 13990, "Salmón ahumado, rúcula, grana padano, aceite de oliva y limoneta."],
+        ["Carpaccio de res", 13990, "Láminas de filete, rúcula, grana padano, alcaparras y limón flameado."],
+        ["Carpaccio de pulpo", 15990, "Rúcula, grana padano, limoneta de la casa y alcaparras."],
+        ["Carpaccio mar y tierra con burrata", 26990, "Para compartir. Salmón ahumado, prosciutto, tomate confitado, rúcula, aceitunas, grana padano y burrata."],
+        ["Tártaro de res", 15990, "Filete, alcaparras, cebolla morada, lechuga hidropónica, salsa verde y mayonesa, con papas fritas."],
+        ["Tártaro de salmón", 15990, "Salmón, cebolla morada, alcaparras, tomate cherry, rúcula, palta y piña confitada, con papas fritas."],
+        ["Tártaro de atún", 15990, "Atún, palta, cebolla morada, ciboulette, rábano, ají verde, alcaparras y apio, con dressing de la casa."]
+      ]},
+      { id: "insalate", name: "Insalate", tag: "Ensaladas", items: [
+        ["Caprese", 13290, "Mozzarella, tomate cherry y albahaca."],
+        ["Caprese mediterránea", 13990, "Mozzarella di bufala, rúcula, albahaca, palta, tomate cherry soasado y pesto de nueces y almendras, con aceto trufado."],
+        ["Caprese di bufala", 15290, "Mozzarella di bufala, prosciutto, tomate, rúcula y albahaca."],
+        ["Salmone affumicato", 16990, "Salmón ahumado, mix verde, palta, tomate cherry, fondos de alcachofa y semillas de zapallo y maravilla."],
+        ["César con pollo", 13690, "Clásica ensalada César."],
+        ["César con camarón", 14290, "Clásica ensalada César."],
+        ["César con salmón", 14990, "Clásica ensalada César."],
+        ["Quinoa", 12990, "Tabulé de quinoa orgánica con palta, zucchini, cherry, berenjenas, pesto y queso de cabra."],
+        ["Tataki de atún", 14590, "Mix de hojas, palta molida, atún sellado en sésamo, papas hilo, reducción de aceto, pepino y tomate cherry."],
+        ["Mix verde", 7990, "Variedad de lechugas, rúcula, berro y palta."]
+      ]},
+      { id: "paste", name: "Paste e risotti", tag: "Pasta de la casa", items: [
+        ["Lasagna de res", 15990, "Ragù, bechamel, pasta de la casa y mozzarella."],
+        ["Lasagna de pesto", 15990, "Pesto de la casa, bechamel, pasta de la casa y mozzarella."],
+        ["Lasagna de champiñón y zapallo italiano", null, null],
+        ["Trilogía de lasagnas", null, "Tres mini pocillos, uno de cada lasagna."],
+        ["Tortelloni", null, "Rellenos de salmón ahumado y stracciatella, con salsa de alcaparras."],
+        ["Raviolón", null, "Relleno de ricota con berenjenas y zapallo asado."],
+        ["Ravioli di manzo", null, "Rellenos de carne, con salsa de res atomatada y grana padano."],
+        ["Pasta Positano", null, "Con centolla y crema huancaína."],
+        ["Spaghetti Santorini", null, "Salsa de ajo, ají y mariscos, con almejas y erizo."],
+        ["Amatriciana", null, "Pasta Rummo corta o larga, pomodoro, pecorino romano, guanciale y peperoncino."],
+        ["Carbonara", null, "Pasta Rummo corta o larga, guanciale, pecorino romano, yema de huevo y pimienta negra."],
+        ["Frutti di mare al pomodoro", null, "Pasta corta o larga con mariscos, tomate cherry, vino blanco y salsa pomodoro."],
+        ["Frutti di mare in salsa bianca", null, "Pasta corta o larga con mariscos, tomate cherry, vino blanco y crema."],
+        ["Risotto marino", 16290, "Camarones y langostinos."],
+        ["Risotto frutti di mare", null, "Mix de mariscos y reducción de vino blanco."],
+        ["Risotto pampa", null, "Braseado de res con risotto y setas."],
+        ["Risotto de albahaca", null, "Albahaca, azafrán y pesto."],
+        ["Arma tu plato", null, "Pasta de 200 g (gnocchi, penne rigate, spaghetti o fettuccine), salsa a elección y proteína opcional."]
+      ]},
+      { id: "secondi", name: "Secondi", tag: "Fondos", items: [
+        ["Milanesa de res", 15990, "Milanesa clásica de lomo liso."],
+        ["Milanesa de pollo", null, "Milanesa clásica de pollo."],
+        ["Milanesa gratinata", 18290, "De res o pollo, gratinada con mozzarella y salsa pomodoro."],
+        ["Milanesa al pesto", 18290, "De res o pollo, con rúcula y salsa pesto."],
+        ["Tallarín saltado wok", null, "De filete, camarón o pollo, con toda la sazón criolla."],
+        ["Filete saltado wok", null, "Con arroz y papas fritas al estilo peruano."],
+        ["Paella para 2", null, "De mariscos o de carne."],
+        ["Paella para 4", null, "De mariscos o de carne."]
+      ]},
+      { id: "contorni", name: "Contorni", tag: "Acompañamientos", items: [
+        ["Puré de papa trufado", 5990, null],
+        ["Puré de papa tradicional", 4990, null],
+        ["Vegetales salteados", 4990, null],
+        ["Papas fritas provenzal", 4990, null],
+        ["Papas fritas clásicas", 4190, null],
+        ["Rúcula con cherry y parmesano", 4990, null],
+        ["Mix de hojas", 3990, null],
+        ["Palta y tomate", 4690, null]
+      ]},
+      { id: "pizze", name: "Pizze", tag: "Entera", items: [
+        ["Margarita", 16390, "Pomodoro, mozzarella fior di latte y albahaca. Porción $4.890."],
+        ["Salame", 17390, "Pomodoro, mozzarella y salame. Porción $4.890."],
+        ["Tres quesos", 19390, "Pomodoro, mozzarella, grana padano y gorgonzola. Porción $5.290."],
+        ["Prosciutto e rúcula", 19390, "Pomodoro, mozzarella, prosciutto crudo y rúcula. Porción $5.290."],
+        ["Braseada", 19390, "Pomodoro, mozzarella, braseado de res y cebolla caramelizada. Porción $5.290."],
+        ["Positano", 20390, "Pomodoro, mozzarella, tomate cherry, champiñones, albahaca, aceituna verde y prosciutto."],
+        ["Veneto", 17390, "Pomodoro, mozzarella y jamón cotto."],
+        ["Bolognia", 18390, "Pomodoro, mozzarella y mortadella di Bologna."],
+        ["Romana", 19390, "Pomodoro, mozzarella, jamón cotto, tocino y aceituna."],
+        ["Camarón", 18390, "Pomodoro, mozzarella y camarones salteados."],
+        ["Pollo BBQ", 16390, "Pomodoro, mozzarella, pollo, cebolla caramelizada, tocino y salsa BBQ."],
+        ["Tres carnes", 20390, "Pomodoro, mozzarella, cebolla, carne molida, tocino y jamón cotto."]
+      ]},
+      { id: "panini", name: "Panini", tag: "En focaccia, con papas chips", items: [
+        ["Classico", 10390, "Tomate, rúcula, mozzarella fior di latte y prosciutto crudo."],
+        ["Bologna", 10990, "Mortadella di Bologna, mix verde, tomate asado, zucchini trifolati y aceite de trufa."],
+        ["Burger", 10990, "Hamburguesa de res, mozzarella fundida, cebolla caramelizada, palta, mayonesa y huevo frito."],
+        ["Braseada", 12490, "Braseado de res, mix verde, guanciale crocante, mozzarella fundida y palta."],
+        ["Porchetta", 11990, "Cerdo asado, cebolla caramelizada, rúcula, palta, mayonesa y ajo."],
+        ["Austral", 12490, "Salmón ahumado, mix de lechugas, stracciatella, cebolla morada y pimientos asados."],
+        ["Combinato", 13990, "Arma tu panini: pan, fiambre, queso, salsa y dos vegetales a elección."]
+      ]},
+      { id: "bambini", name: "Bambini", tag: "Para niños", items: [
+        ["Menú Bambini", 12990, "Pollo a la plancha, nuggets, vienesas, boloñesa o fish sticks, con puré, spaghetti, verduras o papas fritas. Incluye jugo natural o bebida de 200 cc y mini helado."]
+      ]},
+      { id: "dolci", name: "Dolci", tag: "Postres", items: [
+        ["Tiramisú", 5990, null],
+        ["Volcán de chocolate", 5990, "Con helado de vainilla."],
+        ["Crepes Nutella", 6990, "Con helado y fruta de la estación."],
+        ["Crepes dulce de leche", 6290, "Con helado y fruta de la estación."],
+        ["Brownie", null, "Con helado de vainilla."],
+        ["Helado, 1 bolita", 3390, "Al plato o en cono."],
+        ["Helado, 2 bolitas", 4290, "Al plato o en cono."],
+        ["Degustación de helados", 4990, "Tres sabores a elección."],
+        ["Galletas de pasta frolla", 3690, "250 g."],
+        ["Galletón choco chips", 2690, null]
+      ]},
+      { id: "torte", name: "Torte", tag: "Por porción", items: [
+        ["Torta tres leches", 4990, null],
+        ["Torta panqueque naranja", 4590, null],
+        ["Carrot cake", 4590, null],
+        ["Cheesecake de maracuyá", 4590, null],
+        ["Cheesecake de frutos rojos", 4590, null],
+        ["Pie de limón", 3990, null],
+        ["Kuchen de manzana", 3690, null],
+        ["Crostata", 3690, "Membrillo, ciruela o Nutella."]
+      ]},
+      { id: "forno", name: "Forno", tag: "Panadería", items: [
+        ["Pan de la casa", 6590, "1 kg."],
+        ["Pan brioche de molde", 9590, "1,5 kg aprox."],
+        ["Focaccia simple", 2490, "Por trozo."],
+        ["Focaccia de cebolla", 2990, "Por trozo."],
+        ["Focaccia de aceitunas", 2990, "Por trozo."],
+        ["Focaccia de tomate cherry", 2990, "Por trozo."],
+        ["Focaccia mediterránea", 3290, "Por trozo."],
+        ["Croissant jamón y queso", 5990, null],
+        ["Croissant dulce de leche", 4290, null],
+        ["Croissant Nutella", 5290, null],
+        ["Croissant mermelada", 4990, null]
+      ]},
+      { id: "emporio", name: "Emporio", tag: "Fiambres y quesos", items: [
+        ["Prosciutto crudo", 7290, "100 g."],
+        ["Prosciutto cotto", 6290, "100 g."],
+        ["Salame", 6490, "100 g."],
+        ["Mortadella di Bologna", 6290, "100 g."],
+        ["Mozzarella fior di latte", 4290, null],
+        ["Mozzarella di bufala", 4990, null],
+        ["Provolone dolce", 5990, "180 g."],
+        ["Pecorino", 8990, "150 g."],
+        ["Grana padano", 10990, "200 g."]
+      ]}
+    ]},
+
+    { id: "colazioni", name: "Colazioni", label: "Brunch", sections: [
+      { id: "brunch", name: "Brunch", tag: "Lun–vie 8:00–12:30 · sáb, dom y festivos 9:00–12:30", items: [
+        ["Brunch Positano y Compagnia", 28990, "Para 2. Huevos benedictinos con palta y prosciutto crudo, cotto o salmón ahumado; focaccia o pan de la casa; 2 cafés o tés, 2 jugos naturales y 2 bowls de fruta con yogurt y granola."],
+        ["Brunch Amalfi", 20990, "Para 2. Huevos revueltos con pancetta, vegetales y queso; masas dulces y saladas, panes y focaccia; 2 cafés o tés y 2 jugos."],
+        ["Brunch Positano", null, "Individual. Huevos benedictinos con palta y prosciutto crudo, cotto o salmón ahumado; focaccia o pan de la casa; café o té, jugo natural y bowl de fruta con yogurt y granola."],
+        ["Brunch Castelmezzano", null, "Para 2. Prosciutto crudo o cotto o salmón ahumado, palta molida, mermelada casera, mantequilla y variedad de panes; 2 cafés o tés y 2 jugos."],
+        ["Brunch Siciliano", null, "Individual. Huevos revueltos u omelette con queso, café o té Ahmad, jugo natural de 200 ml y tostada o focaccia."]
+      ]},
+      { id: "uova", name: "Uova", tag: "Huevos", items: [
+        ["Benedettini affumicati", 12990, "Huevos benedictinos con salmón ahumado, palta y focaccia o pan de la casa."],
+        ["Benedettini", null, "Huevos benedictinos con prosciutto crudo o cotto, palta y focaccia o pan de la casa."],
+        ["In camicia", 8390, "Huevos pochados con palta y focaccia o pan de la casa."],
+        ["Strapazzata", null, "Huevos revueltos con tostada de focaccia o pan de la casa."],
+        ["Omelette", null, "Con pan de la casa."],
+        ["Omelette prosciutto", null, "Prosciutto cotto y mozzarella."]
+      ]},
+      { id: "extra", name: "Extra", tag: "Para agregar", items: [
+        ["Salmón ahumado", 4490, "50 g."],
+        ["Prosciutto crudo", 4490, "50 g."],
+        ["Jamón cotto", 2490, "50 g."],
+        ["Tocino", 3990, "50 g."],
+        ["Salsa holandesa", 1690, null],
+        ["Vegetales", 1990, null]
+      ]},
+      { id: "toast", name: "Toast e frutta", tag: "Tostadas y fruta", items: [
+        ["Toast clásico cotto y mozzarella", 6990, null],
+        ["Toast clásico salame y mozzarella", 6990, null],
+        ["Toast francese", null, "Brioche tostado con mantequilla, helado, mermelada y fruta de la estación."],
+        ["Ensalada de frutas", 6690, "Frutas de la estación."],
+        ["Bowl de yogurt", 6690, "Yogurt natural con granola y frutas de la estación."]
+      ]}
+    ]},
+
+    { id: "caffe", name: "Caffè", label: "Cafetería", sections: [
+      { id: "caffe-caldi", name: "Caffè", tag: "Café Mauro Deluxe · 70% arábica, 30% robusta", items: [
+        ["Ristretto", 2990, "Café intenso."],
+        ["Espresso", 2990, null],
+        ["Espresso doble", 3980, null],
+        ["Espresso lungo", null, null],
+        ["Americano", null, null],
+        ["Latte", 3990, "Café, leche vaporizada y espuma de leche."],
+        ["Cappuccino", null, "Café, leche y espuma texturizada."],
+        ["Macchiato", null, "Café y leche vaporizada."],
+        ["Marocchino", null, "Café, salsa de chocolate, leche, espuma y cacao."],
+        ["Mokaccino", null, "Café, chocolate y leche texturizada."],
+        ["Chai latte", 4690, "Sirope de chai y leche texturizada."],
+        ["Chocolate caliente", null, "Leche, chocolate y marshmallow."]
+      ]},
+      { id: "caffe-freddi", name: "Freddi", tag: "Fríos", items: [
+        ["Caffè affogato", 3990, "Café con helado de vainilla."],
+        ["Frappé", 4590, "Caramel, chocolate o frappuccino."],
+        ["Milkshake", 6290, "Según helados disponibles."],
+        ["Caffè helado", null, "Café, leche, dos bolitas de helado y crema chantilly."],
+        ["Iced latte", null, "Café, leche y hielo."]
+      ]},
+      { id: "te", name: "Tè e infusioni", tag: "Té", items: [
+        ["Infusión Positano", 2990, "Menta y limón."],
+        ["Ahmad Tea", null, "Variedades."],
+        ["Dammann Frères", null, "Variedades premium."],
+        ["Té verde Gunpowder", null, "Orgánico, origen China."],
+        ["Té negro Blue Flower", null, "Origen India."],
+        ["English Breakfast", null, "Origen Sri Lanka."],
+        ["Rooibos", null, "Orgánico, sin cafeína."]
+      ]},
+      { id: "caffe-extra", name: "Extra", tag: "Para agregar", items: [
+        ["Leche de almendra, coco o soya", 1390, null],
+        ["Leche descremada o sin lactosa", 1390, null],
+        ["Crema chantilly", 1390, null],
+        ["Syrup", 990, "Vainilla, caramelo, avellana o coco."]
+      ]}
+    ]},
+
+    { id: "bar", name: "Bar", label: "Drinks", sections: [
+      { id: "spritz", name: "Spritz", tag: "Aperitivo", items: [
+        ["Aperol spritz", 5990, "Aperol, espumante, agua gasificada y naranja."],
+        ["Limoncello Positano", 6990, "Limoncello hecho en casa, espumante, agua gasificada y naranja."],
+        ["Ramazzotti", 5990, "Ramazzotti, espumante y tónica Fentimans."],
+        ["Ramazzotti Violetto", 6990, "Ramazzotti Violetto, espumante, agua gasificada y naranja."],
+        ["St-Germain", 7990, "St-Germain, espumante, agua gasificada y limón."]
+      ]},
+      { id: "autore", name: "Coctelería de autor", tag: "De la casa", items: [
+        ["Caelum", 9500, "Gin blackberry y Ramazzotti Violetto, con pomelo y granada."],
+        ["Santo Momento", 7290, "Gin, St-Germain, limoncello, limón y albúmina."],
+        ["Redheaven", 9500, "Vodka sandía, goma, limón y pulpa de frambuesa."],
+        ["Citric Lu", 9500, "Beefeater orange, mix cítrico, maracuyá, mango y goma."],
+        ["Snowblack", 8990, "Whisky, crema, licor de café y shot de café."],
+        ["Whisky tropical", 7290, "Whisky, piña, naranja, triple sec, limón y espumante."],
+        ["Pisco sour Ruby", 5290, "Pisco, limón, albúmina y vino tinto."],
+        ["Rosa Pasión", 5690, "Ramazzotti, limón, goma de canela y albúmina."],
+        ["Coconut", 6990, "Ron blanco, limón, leche de coco, leche condensada y coco rallado."],
+        ["Trilogía di Piacere", 12990, "Tres cócteles de vodka blood orange: Blood Spicy, Blood Sour y Blood Velvet."]
+      ]},
+      { id: "classici", name: "Clásicos", tag: "Coctelería clásica", items: [
+        ["Negroni", 6690, "Gin, Campari y Martini Rosso."],
+        ["Espresso martini", 7990, "Vodka, espresso y Kahlúa."],
+        ["Pisco sour clásico", 4990, "Pisco quebranta, limón, goma, clara de huevo y bitters."],
+        ["Pisco sour Catedral", 7690, "Pisco Catedral, limón, goma, clara de huevo y bitters."],
+        ["Mojito", 6290, "Ron, menta, limón, goma y agua con gas."],
+        ["Moscow mule", 6990, null],
+        ["Manhattan", 6690, "Whiskey, Martini Rosso y marrasquino."],
+        ["Penicillin", 7990, "Whisky, limón, miel y jengibre."],
+        ["Tom Collins", 6390, "Gin, limón, goma y agua con gas."],
+        ["Martini dry", 5690, "Gin, Martini dry y aceituna verde."],
+        ["Disaronno sour", 7690, "Disaronno, limón y goma."],
+        ["Kir royal", 5690, "Licor de cassis y espumante."],
+        ["Caipiriña", 7490, "Cachaça 51, limón sutil y goma."],
+        ["Tequila sunrise", 9200, "Tequila José Cuervo, granadina, limón y naranja."],
+        ["Sangría Positano", 6390, "Vino, triple sec, jugo de naranja y frutas."]
+      ]},
+      { id: "gin", name: "Gin tonic", tag: "3 oz con tónica", items: [
+        ["Beefeater", 7990, null],
+        ["Tanqueray", 8990, null],
+        ["Hendrick's", 9990, null]
+      ]},
+      { id: "analcolici", name: "Sin alcohol", tag: "Mocktails, limonadas y jugos", items: [
+        ["Positanium Blue", 5590, "Arándanos, syrup de curaçao y espumante cero."],
+        ["Positanium Green Apple", 5590, "Syrup de manzana verde, arándanos y espumante cero."],
+        ["Ana Ana", 4690, "Piña, mango, syrup de canela e infusión de arándanos."],
+        ["Vita Vita", 4690, "Maracuyá, naranja, goma y agua con gas."],
+        ["Mojito sin alcohol", 4590, null],
+        ["Limonada tradicional", 4290, null],
+        ["Limonada menta jengibre", 4490, null],
+        ["Limonada menta albahaca", 4490, null],
+        ["Exprimido de naranja", 4490, "Según disponibilidad."],
+        ["Jugos naturales", 3990, "Chirimoya, mango, frambuesa, frutilla, maracuyá o piña."],
+        ["Jugos detox", 4990, "Variedades."]
+      ]},
+      { id: "birre", name: "Birre", tag: "Cervezas", items: [
+        ["Peroni", 4390, null],
+        ["Kunstmann Torobayo", 4390, null],
+        ["Austral Calafate", 4390, null],
+        ["Austral Lager", 4390, null],
+        ["Torres del Paine", 4390, null],
+        ["Asahi", 4390, null],
+        ["Cusqueña", 4390, null],
+        ["Erdinger", 4390, "Botella."]
+      ]}
+    ]},
+
+    { id: "vini", name: "Vini", label: "Vinos", sections: [
+      { id: "calice", name: "Por copa", tag: "Al calice", items: [
+        ["Errázuriz Aconcagua Cuvée", 5490, "Cabernet Sauvignon, Carmenere, Pinot Noir, Chardonnay o Sauvignon Blanc."],
+        ["Château Los Boldos Tradición Reserva", 5490, "Cabernet Sauvignon, Carmenere, Chardonnay o Sauvignon Blanc."],
+        ["Espumante brut", 3990, "Copa."]
+      ]},
+      { id: "bottiglia", name: "Botellas", tag: "Tintos y blancos", items: [
+        ["Errázuriz Gran Reserva Cabernet Sauvignon", 24990, null],
+        ["Errázuriz Gran Reserva Carmenere", 24990, null],
+        ["Errázuriz Gran Reserva Pinot Noir", 24990, null],
+        ["Errázuriz Gran Reserva Chardonnay", 24990, null],
+        ["Vicus Orbis Reserva Sauvignon Blanc", 24990, null]
+      ]},
+      { id: "bollicine", name: "Espumantes", tag: "Botella", items: [
+        ["Undurraga Brut", 17990, null],
+        ["Riccadonna Brut", 23990, null],
+        ["Riccadonna Ruby", 23990, null],
+        ["Riccadonna Prosecco", 23990, null],
+        ["Chandon Spritz", 25990, null],
+        ["Chandon Brut", null, null],
+        ["Chandon Rosé", null, null]
+      ]}
+    ]}
+  ];
+
 
   (function () {
     "use strict";
@@ -1098,17 +1437,15 @@
       tel: "tel:" + CONFIG.phone.tel,
       maps: CONFIG.links.maps,
       directions: CONFIG.links.directions,
-      instagram: CONFIG.links.instagram,
-      menuPdf: CONFIG.links.menuPdf
+      instagram: CONFIG.links.instagram
     };
     document.querySelectorAll("[data-link]").forEach(function (el) {
       var url = hrefs[el.getAttribute("data-link")];
-      if (url) { el.setAttribute("href", url); el.hidden = false; }
-      else if (el.getAttribute("data-link") === "menuPdf") { el.hidden = true; }
+      if (url) el.setAttribute("href", url);
     });
 
     if (!CONFIG.showPrices) {
-      document.querySelectorAll(".price, .leader").forEach(function (el) { el.hidden = true; });
+      document.querySelectorAll("[data-price]").forEach(function (el) { el.hidden = true; });
     }
 
     // ---------- WhatsApp (.js-wa) ----------
@@ -1203,34 +1540,127 @@
       try { localStorage.setItem("positano-theme", next); } catch (err) {}
     });
 
-    // ---------- Pestañas de la carta ----------
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
-    function selectTab(tab) {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute("aria-selected", String(on));
-        t.tabIndex = on ? 0 : -1;
-        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-      });
-      // Solo desplaza la fila de pestañas (no la página) para dejar visible la activa
-      var list = tab.parentElement;
-      if (list.scrollWidth > list.clientWidth) list.scrollLeft = tab.offsetLeft - list.offsetLeft - 16;
+    // ---------- Carta ----------
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
     }
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener("click", function () { selectTab(tab); });
-      tab.addEventListener("keydown", function (e) {
-        var next = null;
-        if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
-        if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
-        if (e.key === "Home") next = tabs[0];
-        if (e.key === "End") next = tabs[tabs.length - 1];
-        if (next) { e.preventDefault(); selectTab(next); next.focus(); }
+    function clp(n) { return "$" + n.toLocaleString("es-CL"); }
+    var ICON_DOWN = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v9M4 7.5 8 11.5l4-4M3 14h10"/></svg>';
+
+    var catsEl = document.getElementById("menu-cats");
+    var chipsEl = document.getElementById("menu-chips");
+    var panelEl = document.getElementById("menu-panel");
+    var catButtons = [];
+
+    function renderCategory(cat) {
+      chipsEl.textContent = "";
+      panelEl.textContent = "";
+      panelEl.setAttribute("aria-labelledby", "cat-" + cat.id);
+      cat.sections.forEach(function (sec) {
+        var chip = el("a", null, sec.name);
+        chip.href = "#m-" + sec.id;
+        chipsEl.appendChild(chip);
+
+        var s = el("section", "menu-sec");
+        s.id = "m-" + sec.id;
+        s.setAttribute("aria-labelledby", "mh-" + sec.id);
+        var head = el("div", "menu-sec-head");
+        var h = el("h3", null, sec.name); h.id = "mh-" + sec.id;
+        head.append(h, el("span", "rule"), el("span", "tag", sec.tag));
+        var list = el("ul", "menu-items");
+        sec.items.forEach(function (it) {
+          var li = el("li", "mi");
+          var top = el("div", "mi-top");
+          top.appendChild(el("h4", null, it[0]));
+          if (CONFIG.showPrices && typeof it[1] === "number") top.appendChild(el("span", "price", clp(it[1])));
+          li.appendChild(top);
+          if (it[2]) li.appendChild(el("p", null, it[2]));
+          list.appendChild(li);
+        });
+        s.append(head, list);
+        panelEl.appendChild(s);
       });
+    }
+
+    function selectCategory(id, focus) {
+      var cat = MENU.filter(function (c) { return c.id === id; })[0] || MENU[0];
+      catButtons.forEach(function (b) {
+        var on = b.dataset.cat === cat.id;
+        b.setAttribute("aria-selected", String(on));
+        b.tabIndex = on ? 0 : -1;
+        if (on) {
+          if (focus) b.focus();
+          // Solo desplaza la fila de categorías (móvil), nunca la página
+          if (catsEl.scrollWidth > catsEl.clientWidth) catsEl.scrollLeft = b.offsetLeft - catsEl.offsetLeft - 16;
+        }
+      });
+      renderCategory(cat);
+    }
+
+    MENU.forEach(function (cat, i) {
+      var b = el("button", "menu-cat");
+      b.type = "button";
+      b.id = "cat-" + cat.id;
+      b.dataset.cat = cat.id;
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-controls", "menu-panel");
+      b.append(el("span", "n", cat.name), el("span", "l", cat.label));
+      b.addEventListener("click", function () { selectCategory(cat.id); });
+      b.addEventListener("keydown", function (e) {
+        var k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (!k) return;
+        e.preventDefault();
+        selectCategory(MENU[(i + k + MENU.length) % MENU.length].id, true);
+      });
+      catButtons.push(b);
+      catsEl.appendChild(b);
     });
-    // Abre la sección acorde a la hora: brunch por la mañana
-    var h = new Date().getHours();
-    if (h >= 13 && h < 18) selectTab(tabs[1]);
-    else if (h >= 18) selectTab(tabs[5]);
+
+    // Abre la carta acorde a la hora: brunch por la mañana, bar desde las 18:00
+    var now = new Date(), mins = now.getHours() * 60 + now.getMinutes();
+    selectCategory(mins < 12 * 60 + 30 ? "colazioni" : mins >= 18 * 60 ? "bar" : "cucina");
+
+    // Tarjetas de PDF
+    var cardsEl = document.getElementById("carta-cards");
+    CONFIG.cartas.forEach(function (c, i) {
+      var card = el("article", "carta-card reveal");
+      var ph = el("figure", "ph");
+      ph.setAttribute("data-file", c.image);
+      var img = document.createElement("img");
+      img.src = c.image; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+      img.width = 900; img.height = 1100;
+      img.addEventListener("error", function () { ph.classList.add("is-missing"); });
+      ph.appendChild(img);
+
+      var body = el("div", "carta-card-body");
+      body.append(el("h3", null, c.title), el("p", null, c.text));
+      var actions = el("div", "carta-card-actions");
+      if (c.ready && c.pdf) {
+        var a = el("a");
+        a.href = c.pdf; a.target = "_blank"; a.rel = "noopener";
+        a.innerHTML = "Abrir carta " + ICON_DOWN;
+        a.setAttribute("aria-label", "Abrir carta " + c.title + " en PDF" + (c.size ? ", " + c.size : ""));
+        actions.append(a, el("span", "meta", "PDF" + (c.size ? " · " + c.size : "")));
+      } else {
+        var pending = el("span", "sample", "Contenido de ejemplo");
+        pending.title = "PDF pendiente: " + c.pdf;
+        actions.append(el("span", "meta", "PDF pendiente"), pending);
+      }
+      var online = el("button", null, "Ver en línea →");
+      online.type = "button";
+      online.addEventListener("click", function () {
+        selectCategory(c.menu);
+        document.getElementById("carta-completa").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      });
+      actions.appendChild(online);
+      body.appendChild(actions);
+
+      card.append(el("span", "carta-card-num", "Carta " + String(i + 1).padStart(2, "0")), ph, body);
+      cardsEl.appendChild(card);
+    });
 
     // ---------- Sección activa y revelado ----------
     var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
