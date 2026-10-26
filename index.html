@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/hero/hero-positano-1080.webp" imagesrcset="assets/hero/hero-positano-720.webp 720w, assets/hero/hero-positano-1080.webp 1080w" imagesizes="(min-width: 900px) 58vw, 100vw">
+  <link rel="preload" as="image" href="assets/hero/hero-cafe-poster.webp">
 
   <script type="application/ld+json">
   {
@@ -331,6 +331,16 @@
     .hero { padding-top: var(--s-5); padding-bottom: var(--s-8); }
     .hero-grid { display: grid; gap: var(--s-6); }
     .hero-media { aspect-ratio: 4 / 5; max-height: 72svh; width: 100%; }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .video-toggle {
+      position: absolute; right: var(--s-3); bottom: var(--s-3); z-index: 1; min-height: 40px; padding: 0 var(--s-3);
+      background: rgba(20, 14, 18, 0.55); color: #fff; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: var(--r-1);
+      font-size: var(--fs-xs); letter-spacing: 0.08em; cursor: pointer;
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    }
+    .video-toggle:hover { background: rgba(20, 14, 18, 0.8); }
+    .video-toggle .vt-play, .video-toggle[aria-pressed="true"] .vt-pause { display: none; }
+    .video-toggle[aria-pressed="true"] .vt-play { display: inline; }
     .hero-media figcaption {
       position: absolute; left: var(--s-4); bottom: var(--s-4); z-index: 1;
       font-size: var(--fs-xs); letter-spacing: 0.08em; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.5);
@@ -349,7 +359,7 @@
 
     @media (min-width: 900px) {
       .hero { padding-top: var(--s-6); }
-      .hero-grid { grid-template-columns: 11fr 13fr; gap: var(--s-8); align-items: stretch; }
+      .hero-grid { grid-template-columns: 13fr 11fr; gap: var(--s-8); align-items: stretch; }
       .hero h1 { font-size: clamp(3.2rem, 1rem + 3.9vw, 5.4rem); }
       .hero-copy { order: -1; padding-block: var(--s-7); }
       .hero-media { aspect-ratio: auto; height: min(calc(100svh - var(--header-h) - 3rem), 820px); min-height: 560px; max-height: none; }
@@ -687,13 +697,16 @@
     <!-- ===== Portada ===== -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="container hero-grid">
-        <figure class="ph hero-media" data-file="assets/hero/hero-positano-1080.webp">
-          <img
-            src="assets/hero/hero-positano-1080.webp"
-            srcset="assets/hero/hero-positano-720.webp 720w, assets/hero/hero-positano-1080.webp 1080w"
-            sizes="(min-width: 900px) 58vw, 100vw"
-            alt="Plato de pasta en mesa de mármol negro, sobre el individual ilustrado de Positano"
-            width="1080" height="720" fetchpriority="high" decoding="async">
+        <figure class="ph hero-media" data-file="assets/hero/hero-cafe.mp4">
+          <!-- Sin autoplay en el HTML: el JS lo inicia solo si no hay «reducir movimiento» ni ahorro de datos -->
+          <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero/hero-cafe-poster.webp"
+            width="540" height="960" aria-label="Preparación de café en la barra de Positano: molienda, espresso y latte art">
+            <source src="assets/hero/hero-cafe.webm" type="video/webm">
+            <source src="assets/hero/hero-cafe.mp4" type="video/mp4">
+          </video>
+          <button class="video-toggle" type="button" aria-pressed="false" hidden>
+            <span class="vt-pause">Pausar video</span><span class="vt-play">Reproducir video</span>
+          </button>
           <figcaption>Av. Chicureo 847 · Colina</figcaption>
         </figure>
 
@@ -1511,6 +1524,26 @@
         status.append(a, ".");
       }
     });
+
+    // ---------- Video de portada ----------
+    var video = document.querySelector(".hero-video");
+    var vToggle = document.querySelector(".video-toggle");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var saveData = navigator.connection && navigator.connection.saveData;
+    if (video && !reduceMotion && !saveData) {
+      video.preload = "auto";
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { vToggle.setAttribute("aria-pressed", "true"); });
+    } else if (vToggle) {
+      vToggle.setAttribute("aria-pressed", "true");
+    }
+    if (vToggle) {
+      vToggle.hidden = false;
+      vToggle.addEventListener("click", function () {
+        if (video.paused) { video.play(); vToggle.setAttribute("aria-pressed", "false"); }
+        else { video.pause(); vToggle.setAttribute("aria-pressed", "true"); }
+      });
+    }
 
     // ---------- Encabezado y barra móvil ----------
     var header = document.querySelector(".site-header");

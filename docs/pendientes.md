@@ -6,7 +6,7 @@
 
 | Archivo | Uso | Origen |
 |---|---|---|
-| `assets/hero/hero-positano-1080.webp` / `-720.webp` | Portada | pasta-carbonara-individual.jpg |
+| `assets/hero/hero-cafe.webm` (0,8 MB) + `hero-cafe.mp4` + `hero-cafe-poster.webp` | Portada (video) | `assets/originales/video/hero-original.mp4`: recortado (sin el destello de transición de 6,8–7,6 s ni el cierre con logo), sin audio, 540×960, 1,0 MB |
 | `assets/ambiente/mattina-brunch.webp` | Momento Mattina | brunch-tostada-prosciutto.jpg |
 | `assets/ambiente/pranzo-pastas.webp` | Momento Pranzo | pasta-pomodoro.jpg |
 | `assets/galeria/pasillo-boveda.webp` | Galería | pasillo-boveda-piedra.jpg |
