@@ -75,3 +75,12 @@ En `assets/galeria/` hay fotos descargadas de la web de Eat Greek: `introduction
 - **Portada:** video de Eat Greek (`assets/hero/hero-referencia.webm/.mp4`; original en `assets/originales/video/eatgreek-vid-original.mp4`), en móvil y escritorio, con la etiqueta «Contenido de ejemplo · video de referencia, reemplazar». Además es de baja resolución (640×360). El video propio de Positano sigue listo en `assets/hero/hero-cafe.*`, igual que la foto `hero-mesa-1080.webp`.
 - **Dentro de Positano:** el carrusel tiene las 2 fotos reales (bóveda y ramen) y 9 fotos de Eat Greek con el pie «Foto de referencia» y la etiqueta de contenido de ejemplo. Se quitaron los huecos de foto pendiente del carrusel. Siguen faltando fotos propias del salón, un detalle de mesa, la barra de café y el emporio.
 - Antes de publicar: reemplazar todo el material de Eat Greek y borrarlo del repositorio.
+
+### Actualización (26-oct): etiquetas «Contenido de ejemplo» retiradas de la página, por pedido del usuario
+
+Ya no se ven en pantalla. **Lo provisional sigue ahí sin aviso visible**, así que esta lista es la única referencia antes de publicar:
+- Video de la portada: es de Eat Greek (`assets/hero/hero-referencia.*`).
+- Foto de «Fatto in casa»: es de Eat Greek (`assets/galeria/introduction-image.avif`).
+- Carrusel «Dentro de Positano»: desde la tercera foto, todas son de Eat Greek.
+- Horario: el cierre figura como «por confirmar».
+- Formulario de reserva: la reserva por WhatsApp sigue sin activarse; el aviso del formulario lo explica.

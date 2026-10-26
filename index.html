@@ -381,8 +381,6 @@
     .video-toggle:hover { background: rgba(20, 14, 18, 0.75); }
     .video-toggle .vt-play, .video-toggle[aria-pressed="true"] .vt-pause { display: none; }
     .video-toggle[aria-pressed="true"] .vt-play { display: inline; }
-    .hero-sample { position: absolute; left: var(--gutter); bottom: var(--s-5); z-index: 1; background: rgba(255, 255, 255, 0.92); }
-    @media (max-width: 899px) { .hero-sample { bottom: calc(var(--s-5) + 52px); right: var(--gutter); white-space: normal; line-height: 1.35; } }
 
     /* =========================================================
        Bienvenida centrada (referencia: Eat Greek)
@@ -420,7 +418,6 @@
     .split-copy .link-arrow { justify-self: start; }
     .split-media { min-height: 70svh; }
     .split-media img { position: absolute; inset: 0; }
-    .split-sample { position: absolute; left: var(--s-4); bottom: var(--s-4); z-index: 1; background: rgba(255, 255, 255, 0.92); }
     @media (min-width: 900px) {
       .split { grid-template-columns: 1fr 1fr; min-height: 100svh; }
       .split-copy { padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter))) var(--s-8); }
@@ -553,7 +550,6 @@
     .carousel-track figure { margin: 0; display: grid; gap: var(--s-2); }
     .carousel-track .ph { aspect-ratio: 7 / 10; }
     .carousel-track figcaption { font-size: var(--fs-xs); color: var(--c-ink-soft); letter-spacing: 0.04em; }
-    .carousel-note { margin-top: var(--s-3); font-size: var(--fs-xs); color: var(--c-ink-soft); }
     .g-more { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: var(--s-3); margin-top: var(--s-7); text-align: center; }
     .g-more p { font-family: var(--f-display); font-size: var(--fs-lg); line-height: 1.3; }
     @media (min-width: 760px) { .carousel-track { grid-auto-columns: calc((100% - 16px) / 3); } }
@@ -747,7 +743,7 @@
              Video propio de Positano listo para usar: assets/hero/hero-cafe.webm / .mp4 (vertical) y foto assets/hero/hero-mesa-1080.webp -->
         <!-- Sin autoplay en el HTML: el JS lo inicia salvo con «reducir movimiento» o ahorro de datos -->
         <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero/hero-referencia-poster.webp"
-          width="640" height="360" aria-label="Video de referencia provisional: preparación y emplatado de platos">
+          width="640" height="360" aria-label="Preparación y emplatado de platos">
           <source src="assets/hero/hero-referencia.webm" type="video/webm">
           <source src="assets/hero/hero-referencia.mp4" type="video/mp4">
         </video>
@@ -760,7 +756,6 @@
           <a class="btn btn-outline-light" href="#carta">Ver la carta</a>
         </div>
       </div>
-      <span class="sample hero-sample">Contenido de ejemplo · video de referencia, reemplazar</span>
       <button class="video-toggle" type="button" aria-pressed="false" hidden>
         <span class="vt-pause">Pausar video</span><span class="vt-play">Reproducir video</span>
       </button>
@@ -796,8 +791,7 @@
       <!-- PROVISIONAL: foto de Eat Greek usada como referencia de composición. Reemplazar por una foto de Positano antes de publicar
            (la de Positano lista para usar: assets/ambiente/hecho-en-casa.webp) -->
       <figure class="ph split-media" data-file="assets/galeria/introduction-image.avif">
-        <img src="assets/galeria/introduction-image.avif" alt="Foto de referencia provisional: plato de pulpo a la parrilla" width="887" height="980" loading="lazy" decoding="async">
-        <span class="sample split-sample">Contenido de ejemplo · foto de referencia, reemplazar</span>
+        <img src="assets/galeria/introduction-image.avif" alt="plato de pulpo a la parrilla" width="887" height="980" loading="lazy" decoding="async">
       </figure>
     </section>
 
@@ -854,17 +848,16 @@
             <li><figure><div class="ph" data-file="assets/galeria/pasillo-boveda.webp"><img src="assets/galeria/pasillo-boveda.webp" alt="Pasillo con muros y bóveda de piedra iluminado por faroles" width="1400" height="933" loading="lazy" decoding="async"></div><figcaption>La bóveda de piedra</figcaption></figure></li>
             <li><figure><div class="ph" data-file="assets/galeria/nikkei-ramen.webp"><img src="assets/galeria/nikkei-ramen.webp" alt="Bowl con carne, fideos y huevo marinado sobre mármol negro" width="800" height="1066" loading="lazy" decoding="async"></div><figcaption>Desde la cocina</figcaption></figure></li>
             <!-- PROVISIONAL: fotos de Eat Greek usadas como referencia (pedido del usuario). Reemplazar por fotos de Positano antes de publicar -->
-            <li><figure><div class="ph" data-file="assets/galeria/pizzafire.avif"><img src="assets/galeria/pizzafire.avif" alt="Foto de referencia provisional: Horno con fuego a la vista" width="887" height="980" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/eat-greek-jbr-table.webp"><img src="assets/galeria/eat-greek-jbr-table.webp" alt="Foto de referencia provisional: Mesa en una terraza junto al mar" width="1000" height="1499" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/greek-frape-coffee.avif"><img src="assets/galeria/greek-frape-coffee.avif" alt="Foto de referencia provisional: Café frappé servido en vaso alto" width="667" height="1000" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/grilled-calamari-7.avif"><img src="assets/galeria/grilled-calamari-7.avif" alt="Foto de referencia provisional: Calamar a la parrilla" width="560" height="800" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/greek-beef-fillet.avif"><img src="assets/galeria/greek-beef-fillet.avif" alt="Foto de referencia provisional: Filete de res con salsas" width="560" height="800" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/beetroot-salad-2.avif"><img src="assets/galeria/beetroot-salad-2.avif" alt="Foto de referencia provisional: Ensalada de betarraga" width="569" height="737" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/greek-salad-2-1.avif"><img src="assets/galeria/greek-salad-2-1.avif" alt="Foto de referencia provisional: Ensalada con queso feta" width="498" height="600" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/greek-doughnuts.avif"><img src="assets/galeria/greek-doughnuts.avif" alt="Foto de referencia provisional: Buñuelos con miel" width="560" height="713" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/ice-tea-with-figs-eat-greek.avif"><img src="assets/galeria/ice-tea-with-figs-eat-greek.avif" alt="Foto de referencia provisional: Té helado con higos" width="400" height="498" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/pizzafire.avif"><img src="assets/galeria/pizzafire.avif" alt="Horno con fuego a la vista" width="887" height="980" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/eat-greek-jbr-table.webp"><img src="assets/galeria/eat-greek-jbr-table.webp" alt="Mesa en una terraza junto al mar" width="1000" height="1499" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-frape-coffee.avif"><img src="assets/galeria/greek-frape-coffee.avif" alt="Café frappé servido en vaso alto" width="667" height="1000" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/grilled-calamari-7.avif"><img src="assets/galeria/grilled-calamari-7.avif" alt="Calamar a la parrilla" width="560" height="800" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-beef-fillet.avif"><img src="assets/galeria/greek-beef-fillet.avif" alt="Filete de res con salsas" width="560" height="800" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/beetroot-salad-2.avif"><img src="assets/galeria/beetroot-salad-2.avif" alt="Ensalada de betarraga" width="569" height="737" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-salad-2-1.avif"><img src="assets/galeria/greek-salad-2-1.avif" alt="Ensalada con queso feta" width="498" height="600" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-doughnuts.avif"><img src="assets/galeria/greek-doughnuts.avif" alt="Buñuelos con miel" width="560" height="713" loading="lazy" decoding="async"></div></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/ice-tea-with-figs-eat-greek.avif"><img src="assets/galeria/ice-tea-with-figs-eat-greek.avif" alt="Té helado con higos" width="400" height="498" loading="lazy" decoding="async"></div></figure></li>
           </ul>
-          <p class="carousel-note"><span class="sample">Contenido de ejemplo</span> Desde la tercera foto: imágenes de referencia, reemplazar por fotos de Positano.</p>
         </div>
 
         <div class="g-more reveal">
@@ -900,7 +893,7 @@
                 <div><dt>Sábado, domingo y festivos</dt><dd>desde 9:00</dd></div>
                 <div><dt>Brunch</dt><dd>hasta 12:30</dd></div>
                 <div><dt>Almuerzo</dt><dd>desde 13:00</dd></div>
-                <div><dt>Cierre</dt><dd>por confirmar <span class="sample">Contenido de ejemplo</span></dd></div>
+                <div><dt>Cierre</dt><dd>por confirmar</dd></div>
               </dl>
             </div>
             <div class="visit-actions">
@@ -919,7 +912,7 @@
             <!-- Formulario preparado para WhatsApp. Mientras CONFIG.whatsapp.number esté vacío, deriva al teléfono. -->
             <form class="reserve reveal" id="reserve-form" novalidate>
               <div>
-                <h3>Prepara tu reserva <span class="sample" data-wa-pending>Contenido de ejemplo</span></h3>
+                <h3>Prepara tu reserva</h3>
                 <p class="lead" data-wa-pending>La reserva por WhatsApp aún no está activa. Completa los datos y te mostramos cómo confirmarla por teléfono.</p>
                 <p class="lead" data-wa-ready hidden>Completa los datos y te abrimos WhatsApp con el mensaje listo para enviar.</p>
               </div>
@@ -1658,7 +1651,7 @@
         a.appendChild(el("span", "meta", c.size || ""));
         li.appendChild(a);
       } else {
-        li.append(el("span", "meta", c.title + " · PDF pendiente"), el("span", "sample", "Contenido de ejemplo"));
+        li.appendChild(el("span", "meta", c.title + " · PDF pendiente"));
       }
       pdfsEl.appendChild(li);
     });
