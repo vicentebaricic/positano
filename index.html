@@ -389,7 +389,20 @@
        Bienvenida centrada (referencia: Eat Greek)
        ========================================================= */
     .welcome { background: var(--c-surface-2); }
+    .welcome-layout { display: grid; gap: var(--s-7); align-items: center; }
     .welcome-inner { max-width: 54rem; margin-inline: auto; display: grid; justify-items: center; gap: var(--s-5); text-align: center; }
+    /* El dibujo se pinta con el color de tinta del tema (máscara sobre el SVG) */
+    .welcome-art {
+      width: min(86%, 420px); justify-self: center; aspect-ratio: 333 / 373;
+      background: color-mix(in srgb, var(--c-ink) 88%, transparent);
+      -webkit-mask: url("assets/identidad/dibujo-positano.svg") center / contain no-repeat;
+      mask: url("assets/identidad/dibujo-positano.svg") center / contain no-repeat;
+    }
+    @media (min-width: 960px) {
+      .welcome-layout { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--s-8); }
+      .welcome-inner { justify-items: start; text-align: left; margin-inline: 0; }
+      .welcome-art { width: 100%; max-width: 500px; }
+    }
     .welcome h2 { font-size: clamp(2.2rem, 1.4rem + 3vw, 3.8rem); }
     .welcome p { font-size: var(--fs-md); line-height: 1.85; color: var(--c-ink-soft); max-width: 46rem; }
     .welcome blockquote { margin: var(--s-4) 0 0; display: grid; gap: var(--s-3); max-width: 44rem; }
@@ -757,7 +770,8 @@
 
     <!-- ===== Bienvenida ===== -->
     <section class="section welcome" id="bienvenida" aria-labelledby="welcome-title">
-      <div class="container welcome-inner reveal">
+      <div class="container welcome-layout">
+      <div class="welcome-inner reveal">
         <h2 id="welcome-title">Bienvenidos a <span class="it">Positano</span></h2>
         <p>Caffè, forno y cucina italiana en Av. Chicureo 847. Abrimos temprano con café Mauro y brunch; al mediodía, antipasti para compartir, pastas de la casa, risottos y pizzas; y para cerrar, spritz, vinos y coctelería de autor.</p>
         <blockquote>
@@ -765,6 +779,9 @@
           <cite>John Steinbeck</cite>
         </blockquote>
         <p class="welcome-sign">Positano. <span class="it">Caffè &amp; Cucina.</span></p>
+      </div>
+      <!-- Dibujo a tinta tomado de la portada de la carta (assets/carta/carta-cucina.pdf) -->
+      <div class="welcome-art reveal" role="img" aria-label="Dibujo a tinta de Positano: casas en la ladera, árboles y un ristorante junto a la escalinata"></div>
       </div>
     </section>
 
@@ -1727,6 +1744,13 @@
     document.querySelectorAll(".ph img").forEach(function (img) {
       if (img.complete && img.naturalWidth === 0) img.closest(".ph").classList.add("is-missing");
     });
+
+    // El dibujo usa una máscara CSS, que el navegador no carga al abrir el archivo localmente (file://)
+    var art = document.querySelector(".welcome-art");
+    if (art && location.protocol === "file:") {
+      art.style.cssText = "background:none;-webkit-mask:none;mask:none";
+      art.innerHTML = '<img src="assets/identidad/dibujo-positano.svg" alt="" style="width:100%;height:100%;object-fit:contain">';
+    }
 
     var year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
