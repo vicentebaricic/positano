@@ -189,7 +189,7 @@
     a { color: inherit; }
     h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 400; line-height: var(--lh-snug); margin: 0; letter-spacing: -0.01em; }
     /* Tamaño óptico de titular para todo lo que se lee grande */
-    h1, h2, h3, .brand-name, .main-nav ul a, .moment-time .num, .menu-cat .n, .g-more p, .info-big {
+    h1, h2, h3, .brand-name, .main-nav ul a, .menu-cat .n, .g-more p, .info-big {
       font-variation-settings: "opsz" var(--opsz-display);
     }
     .footer-grid h2, .info-block h3 { font-variation-settings: normal; }
@@ -382,35 +382,6 @@
     }
 
     /* =========================================================
-       Cartas · cuatro imágenes al inicio (referencia: Fenix)
-       ========================================================= */
-    .cartas { padding-block: var(--s-8); }
-    .carta-tiles {
-      display: grid; grid-auto-flow: column; grid-auto-columns: 74%; gap: var(--s-4);
-      overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-      margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
-    }
-    .carta-tiles::-webkit-scrollbar { display: none; }
-    .carta-tile { scroll-snap-align: start; display: grid; gap: var(--s-3); align-content: start; }
-    .carta-tile .ph { display: block; aspect-ratio: 3 / 4; }
-    .carta-tile .ph img { transition: transform 900ms var(--ease); }
-    .carta-tile:hover .ph img { transform: scale(1.03); }
-    .carta-tile h3 { font-size: clamp(1.5rem, 1.15rem + 0.9vw, 2rem); margin-top: var(--s-2); }
-    .tile-links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-5); }
-    .tile-link {
-      display: inline-flex; align-items: center; min-height: 40px; padding: 0; background: none; border: 0; cursor: pointer;
-      font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; color: inherit;
-      background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat;
-      background-position: 0 calc(100% - 8px); background-size: 100% 1.5px;
-    }
-    .tile-link.alt { color: var(--c-ink-soft); background-size: 0 1px; transition: background-size 250ms var(--ease); }
-    .tile-link.alt:hover { background-size: 100% 1px; }
-    .tile-meta { font-size: var(--fs-xs); color: var(--c-ink-soft); letter-spacing: 0.06em; }
-    @media (min-width: 900px) {
-      .carta-tiles { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; margin: 0; padding: 0; gap: var(--s-4); }
-    }
-
-    /* =========================================================
        Bienvenida centrada (referencia: Eat Greek)
        ========================================================= */
     .welcome { background: var(--c-surface-2); }
@@ -423,68 +394,20 @@
     .welcome-sign { font-weight: 600; color: var(--c-ink) !important; }
 
     /* =========================================================
-       Un giorno a Positano
+       Hecho en casa · texto + foto a toda altura (referencia: Eat Greek «Ingredients First»)
        ========================================================= */
-    .moments { display: grid; gap: var(--s-7); }
-    .moment { display: grid; gap: var(--s-4); }
-    .moment .ph { aspect-ratio: 4 / 5; }
-    .moment-time { display: flex; align-items: baseline; gap: var(--s-3); }
-    .moment-time .num { font-family: var(--f-display); font-style: italic; font-size: 1.1rem; color: var(--c-accent); }
-    .moment-time .eyebrow { color: var(--c-ink-soft); }
-    .moment h3 { font-size: var(--fs-lg); }
-    .moment p { color: var(--c-ink-soft); }
-    .moment ul { display: grid; gap: var(--s-1); font-size: var(--fs-sm); border-top: 1px solid var(--c-line); padding-top: var(--s-3); }
-    .moment li::before { content: "— "; color: var(--c-accent); }
-    @media (min-width: 760px) {
-      .moments { grid-template-columns: repeat(3, 1fr); gap: var(--s-6); align-items: start; }
-      .moment:nth-child(2) { margin-top: var(--s-8); }
-      .moment:nth-child(3) { margin-top: var(--s-6); }
-    }
-
-    .forno {
-      display: grid; gap: var(--s-6); margin-top: var(--s-9);
-      padding-top: var(--s-7); border-top: 1px solid var(--c-line);
-    }
-    .forno .ph { aspect-ratio: 3 / 2; }
-    .forno h3 { font-size: var(--fs-xl); }
-    .forno-copy { display: grid; gap: var(--s-4); align-content: start; }
-    .forno-copy > p { color: var(--c-ink-soft); max-width: 34rem; }
-    .forno-lists { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); font-size: var(--fs-sm); }
-    .forno-lists h4 { font-family: var(--f-body); font-size: var(--fs-xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; margin-bottom: var(--s-2); color: var(--c-accent); font-weight: 600; }
-    .forno-lists li { padding-block: 2px; }
-    @media (min-width: 900px) { .forno { grid-template-columns: 6fr 5fr; gap: var(--s-8); align-items: center; } }
-
-    /* =========================================================
-       Piatti (destacados)
-       ========================================================= */
-    .piatti { background: var(--c-surface); }
-    .piatti-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--s-5); margin-bottom: var(--s-7); }
-    .piatti-head .section-head { margin-bottom: 0; }
-    .dishes {
-      display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: var(--s-4);
-      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
-      margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); padding-bottom: var(--s-4);
-      scrollbar-width: thin;
-    }
-    .dish { scroll-snap-align: start; display: grid; gap: var(--s-3); align-content: start; }
-    .dish .ph { aspect-ratio: 4 / 5; }
-    .dish-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); }
-    .dish h3 { font-size: 1.35rem; }
-    .price { font-variant-numeric: tabular-nums; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
-    .dish p { font-size: var(--fs-sm); color: var(--c-ink-soft); }
-    .dish-tag { font-size: var(--fs-xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--c-accent); font-weight: 600; }
-    .swipe-hint { font-size: var(--fs-xs); color: var(--c-ink-soft); margin-top: var(--s-2); }
+    .split { display: grid; background: var(--c-bg); }
+    .split-copy { display: grid; align-content: center; gap: var(--s-5); padding: var(--s-9) var(--gutter); }
+    .split-copy h2 { font-size: clamp(2.2rem, 1.4rem + 3vw, 3.8rem); }
+    .split-copy p { font-size: var(--fs-md); line-height: 1.8; color: var(--c-ink-soft); max-width: 36rem; }
+    .split-copy .eyebrow { font-size: var(--fs-xs); line-height: var(--lh-body); color: var(--c-accent); }
+    .split-copy .link-arrow { justify-self: start; }
+    .split-media { min-height: 70svh; }
+    .split-media img { position: absolute; inset: 0; }
     @media (min-width: 900px) {
-      .dishes {
-        grid-auto-flow: row; grid-template-columns: repeat(12, 1fr); grid-auto-columns: auto;
-        overflow: visible; margin: 0; padding: 0; gap: var(--s-7) var(--s-6);
-      }
-      .dish { grid-column: span 4; }
-      .dish:nth-child(1) { grid-column: 1 / span 7; }
-      .dish:nth-child(1) .ph { aspect-ratio: 4 / 3; }
-      .dish:nth-child(2) { grid-column: 8 / span 5; align-self: end; }
-      .dish:nth-child(n+3) .ph { aspect-ratio: 1 / 1; }
-      .swipe-hint { display: none; }
+      .split { grid-template-columns: 1fr 1fr; min-height: 100svh; }
+      .split-copy { padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter))) var(--s-8); }
+      .split-media { min-height: 0; }
     }
 
     /* =========================================================
@@ -532,6 +455,13 @@
     .menu-cat[aria-selected="true"] { color: var(--c-accent-on-dark); }
     .menu-cat[aria-selected="true"] .n { font-style: italic; }
 
+    .menu-pdfs { display: grid; gap: var(--s-2); }
+    .menu-pdfs h3 { font-family: var(--f-body); font-size: var(--fs-xs); font-weight: 500; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--c-accent-on-dark); font-variation-settings: normal; }
+    .menu-pdfs ul { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-5); }
+    .menu-pdfs a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 40px; text-decoration: none; font-size: var(--fs-sm); color: var(--c-dark-ink); }
+    .menu-pdfs a:hover { color: var(--c-accent-on-dark); }
+    .menu-pdfs svg { width: 14px; height: 14px; color: var(--c-accent-on-dark); }
+    .menu-pdfs .meta { font-size: var(--fs-xs); color: color-mix(in srgb, var(--c-dark-ink) 55%, transparent); }
     .menu-main { min-width: 0; }
     .menu-chips {
       display: flex; gap: var(--s-2); overflow-x: auto; scrollbar-width: none;
@@ -711,8 +641,7 @@
 
       <nav class="main-nav" id="main-nav" aria-label="Principal">
         <ul>
-          <li><a href="#la-casa">La casa</a></li>
-          <li><a href="#piatti">Platos</a></li>
+          <li><a href="#bienvenida">La casa</a></li>
           <li><a href="#carta">Carta</a></li>
           <li><a href="#ambiente">Ambiente</a></li>
           <li><a href="#visitanos">Visítanos</a></li>
@@ -754,20 +683,12 @@
         <h1 id="hero-title">Del primer café a la <em>última copa.</em></h1>
         <div class="hero-actions">
           <a class="btn btn-light" href="#visitanos">Reservar mesa</a>
-          <a class="btn btn-outline-light" href="#cartas">Ver las cartas</a>
+          <a class="btn btn-outline-light" href="#carta">Ver la carta</a>
         </div>
       </div>
       <button class="video-toggle" type="button" aria-pressed="false" hidden>
         <span class="vt-pause">Pausar video</span><span class="vt-play">Reproducir video</span>
       </button>
-    </section>
-
-    <!-- ===== Cartas: cuatro imágenes con acceso al PDF (se generan desde CONFIG.cartas) ===== -->
-    <section class="cartas" id="cartas" aria-labelledby="cartas-title">
-      <div class="container">
-        <h2 id="cartas-title" class="visually-hidden">Nuestras cartas</h2>
-        <div class="carta-tiles" id="carta-tiles"></div>
-      </div>
     </section>
 
     <!-- ===== Bienvenida ===== -->
@@ -783,160 +704,18 @@
       </div>
     </section>
 
-    <!-- ===== Propuesta: un día en Positano ===== -->
-    <section class="section" id="la-casa" aria-labelledby="casa-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Un giorno a Positano</p>
-          <h2 id="casa-title">Una mesa para <span class="it">cada hora</span> del día.</h2>
-          <p>Abrimos con café y brunch, seguimos con cocina italiana al mediodía y cerramos con spritz y coctelería.</p>
-        </header>
-
-        <div class="moments">
-          <article class="moment reveal">
-            <figure class="ph" data-file="assets/ambiente/mattina-brunch.webp">
-              <img src="assets/ambiente/mattina-brunch.webp" alt="Tostada con prosciutto, huevo, palta y tomate cherry en plato de gres oscuro" width="900" height="1125" loading="lazy" decoding="async">
-            </figure>
-            <div class="moment-time"><span class="num">i.</span><span class="eyebrow">Mattina · hasta 12:30</span></div>
-            <h3>Caffè &amp; brunch</h3>
-            <p>Café Mauro, focaccia y pan de la casa, huevos a la italiana y brunch para compartir.</p>
-            <ul>
-              <li>Brunch Positano</li>
-              <li>Benedettini affumicati</li>
-              <li>Croissant y focaccias del forno</li>
-            </ul>
-          </article>
-
-          <article class="moment reveal">
-            <figure class="ph" data-file="assets/ambiente/pranzo-pastas.webp">
-              <img src="assets/ambiente/pranzo-pastas.webp" alt="Pasta al pomodoro servida sobre el individual de Positano" width="900" height="600" loading="lazy" decoding="async">
-            </figure>
-            <div class="moment-time"><span class="num">ii.</span><span class="eyebrow">Pranzo · desde 13:00</span></div>
-            <h3>Cucina italiana</h3>
-            <p>Antipasti para compartir, pasta rellena y lasañas de la casa, risottos y pizzas.</p>
-            <ul>
-              <li>Tavola italiana</li>
-              <li>Pasta Positano</li>
-              <li>Risotto marino</li>
-            </ul>
-          </article>
-
-          <article class="moment reveal">
-            <figure class="ph" data-file="assets/ambiente/sera-spritz.webp">
-              <img src="assets/ambiente/sera-spritz.webp" alt="Spritz y cócteles de autor en la barra" width="900" height="1125" loading="lazy" decoding="async">
-            </figure>
-            <div class="moment-time"><span class="num">iii.</span><span class="eyebrow">Aperitivo &amp; sera</span></div>
-            <h3>Spritz, vino y coctelería</h3>
-            <p>Limoncello de la casa, spritz, clásicos y cócteles de autor, además de vinos chilenos por copa.</p>
-            <ul>
-              <li>Limoncello Positano spritz</li>
-              <li>Caelum · cóctel de autor</li>
-              <li>Mocktails Positanium</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="forno">
-          <figure class="ph reveal" data-file="assets/ambiente/forno-focaccias.webp">
-            <img src="assets/ambiente/forno-focaccias.webp" alt="Focaccias y panes de la casa en el mostrador" width="1200" height="800" loading="lazy" decoding="async">
-          </figure>
-          <div class="forno-copy reveal">
-            <p class="eyebrow">Forno &amp; Emporio</p>
-            <h3>Pan de la casa y <span class="it">sapori</span> italianos.</h3>
-            <p>Además de la cocina, Positano tiene panadería y emporio: focaccias, panes y productos italianos.</p>
-            <div class="forno-lists">
-              <div>
-                <h4>Forno</h4>
-                <ul>
-                  <li>Pan de la casa</li>
-                  <li>Pan brioche de molde</li>
-                  <li>Focaccia de cebolla, aceitunas, tomate cherry o mediterránea</li>
-                  <li>Croissants dulces y salados</li>
-                </ul>
-              </div>
-              <div>
-                <h4>Emporio</h4>
-                <ul>
-                  <li>Prosciutto crudo y cotto</li>
-                  <li>Salame y mortadella di Bologna</li>
-                  <li>Mozzarella fior di latte y di bufala</li>
-                  <li>Provolone, pecorino y grana padano</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- ===== Hecho en casa ===== -->
+    <section class="split" id="hecho-en-casa" aria-labelledby="casa-title">
+      <div class="split-copy reveal">
+        <p class="eyebrow">Fatto in casa</p>
+        <h2 id="casa-title">Lo hecho en casa, <span class="it">primero.</span></h2>
+        <p>En Positano hacemos en casa la pasta rellena y las lasañas, el pan y las focaccias, la mermelada del brunch y el limoncello de nuestros spritz.</p>
+        <p>Los acompañamos con productos italianos: pasta Rummo, mozzarella di bufala, prosciutto, mortadella di Bologna, grana padano y café Mauro.</p>
+        <a class="link-arrow" href="#carta">Ver la carta</a>
       </div>
-    </section>
-
-    <!-- ===== Platos destacados ===== -->
-    <section class="section piatti" id="piatti" aria-labelledby="piatti-title">
-      <div class="container">
-        <div class="piatti-head">
-          <header class="section-head reveal">
-            <p class="eyebrow">I nostri piatti</p>
-            <h2 id="piatti-title">Para empezar a <span class="it">elegir.</span></h2>
-          </header>
-          <a class="link-arrow reveal" href="#carta">Ver la carta</a>
-        </div>
-
-        <div class="dishes" role="list">
-          <article class="dish reveal" role="listitem">
-            <figure class="ph" data-file="assets/platos/pizza-positano.webp">
-              <img src="assets/platos/pizza-positano.webp" alt="Pizza Positano con prosciutto, champiñones, tomate cherry y albahaca" width="1200" height="900" loading="lazy" decoding="async">
-            </figure>
-            <p class="dish-tag">Pizze</p>
-            <div class="dish-top"><h3>Pizza Positano</h3><span class="price" data-price>$20.390</span></div>
-            <p>Pomodoro, mozzarella, tomate cherry, champiñones, albahaca, aceituna verde y prosciutto.</p>
-          </article>
-
-          <article class="dish reveal" role="listitem">
-            <figure class="ph" data-file="assets/platos/pasta-positano.webp">
-              <img src="assets/platos/pasta-positano.webp" alt="Pasta Positano con centolla y crema huancaína" width="1000" height="1250" loading="lazy" decoding="async">
-            </figure>
-            <p class="dish-tag">Pasta de la casa</p>
-            <div class="dish-top"><h3>Pasta Positano</h3></div>
-            <p>Con centolla y crema huancaína.</p>
-          </article>
-
-          <article class="dish reveal" role="listitem">
-            <figure class="ph" data-file="assets/platos/arancini-porcini.webp">
-              <img src="assets/platos/arancini-porcini.webp" alt="Arancini de hongos porcini sobre pesto" width="900" height="900" loading="lazy" decoding="async">
-            </figure>
-            <p class="dish-tag">Antipasti</p>
-            <div class="dish-top"><h3>Arancini porcini</h3><span class="price" data-price>$11.990</span></div>
-            <p>Risotto de hongos porcini relleno de mozzarella, sobre pesto y aceite de trufa.</p>
-          </article>
-
-          <article class="dish reveal" role="listitem">
-            <figure class="ph" data-file="assets/platos/carpaccio-pulpo.webp">
-              <img src="assets/platos/carpaccio-pulpo.webp" alt="Carpaccio de pulpo con rúcula y grana padano" width="900" height="900" loading="lazy" decoding="async">
-            </figure>
-            <p class="dish-tag">Antipasti</p>
-            <div class="dish-top"><h3>Carpaccio de pulpo</h3><span class="price" data-price>$15.990</span></div>
-            <p>Láminas de pulpo, rúcula, grana padano, limoneta de la casa y alcaparras.</p>
-          </article>
-
-          <article class="dish reveal" role="listitem">
-            <figure class="ph" data-file="assets/platos/tavola-italiana.webp">
-              <img src="assets/platos/tavola-italiana.webp" alt="Tavola italiana con fiambres, quesos y focaccia" width="900" height="900" loading="lazy" decoding="async">
-            </figure>
-            <p class="dish-tag">Para compartir · 2 a 3 personas</p>
-            <div class="dish-top"><h3>Tavola italiana</h3><span class="price" data-price>$31.990</span></div>
-            <p>Grana padano, fior di latte, prosciutto crudo y cotto, salame, mortadella y focaccia de la casa.</p>
-          </article>
-
-          <article class="dish reveal" role="listitem">
-            <figure class="ph" data-file="assets/platos/limoncello-spritz.webp">
-              <img src="assets/platos/limoncello-spritz.webp" alt="Limoncello spritz con rodaja de naranja" width="900" height="900" loading="lazy" decoding="async">
-            </figure>
-            <p class="dish-tag">Bar</p>
-            <div class="dish-top"><h3>Limoncello Positano</h3><span class="price" data-price>$6.990</span></div>
-            <p>Spritz con limoncello hecho en casa.</p>
-          </article>
-        </div>
-        <p class="swipe-hint" aria-hidden="true">Desliza para ver más →</p>
-      </div>
+      <figure class="ph split-media" data-file="assets/ambiente/hecho-en-casa.webp">
+        <img src="assets/ambiente/hecho-en-casa.webp" alt="Tostada de pan de la casa con prosciutto, huevo, palta y tomate cherry" width="1080" height="1363" loading="lazy" decoding="async">
+      </figure>
     </section>
 
     <!-- ===== Carta ===== -->
@@ -959,6 +738,10 @@
             <h2 id="carta-title">La carta <span class="it">completa.</span></h2>
             <p class="note">Precios en pesos chilenos, según la carta vigente. Pueden variar sin previo aviso.</p>
             <div class="menu-cats" role="tablist" aria-label="Cartas" id="menu-cats"></div>
+            <div class="menu-pdfs">
+              <h3>Cartas en PDF</h3>
+              <ul id="menu-pdfs"></ul>
+            </div>
           </aside>
           <div class="menu-main">
             <nav class="menu-chips" id="menu-chips" aria-label="Secciones de la carta"></nav>
@@ -1097,9 +880,8 @@
         <nav class="footer-col" aria-label="Pie de página">
           <h2>Explora</h2>
           <ul>
-            <li><a href="#cartas">Cartas</a></li>
-            <li><a href="#la-casa">La casa</a></li>
-            <li><a href="#carta">Carta completa</a></li>
+            <li><a href="#bienvenida">La casa</a></li>
+            <li><a href="#carta">Carta</a></li>
             <li><a href="#ambiente">Ambiente</a></li>
             <li><a href="#visitanos">Reservas</a></li>
           </ul>
@@ -1511,9 +1293,6 @@
       if (url) el.setAttribute("href", url);
     });
 
-    if (!CONFIG.showPrices) {
-      document.querySelectorAll("[data-price]").forEach(function (el) { el.hidden = true; });
-    }
 
     // ---------- WhatsApp (.js-wa) ----------
     var waReady = /^\d{10,15}$/.test(CONFIG.whatsapp.number);
@@ -1722,43 +1501,22 @@
     var now = new Date(), mins = now.getHours() * 60 + now.getMinutes();
     selectCategory(mins < 12 * 60 + 30 ? "colazioni" : mins >= 18 * 60 ? "bar" : "cucina");
 
-    // Cuatro imágenes de inicio: una por carta (CONFIG.cartas)
-    var tilesEl = document.getElementById("carta-tiles");
+    // Cartas en PDF (CONFIG.cartas), bajo las categorías de la carta completa
+    var pdfsEl = document.getElementById("menu-pdfs");
     CONFIG.cartas.forEach(function (c) {
-      var tile = el("article", "carta-tile reveal");
-      var media = el(c.ready && c.pdf ? "a" : "div", "ph");
-      media.setAttribute("data-file", c.image);
+      var li = el("li");
       if (c.ready && c.pdf) {
-        media.href = c.pdf; media.target = "_blank"; media.rel = "noopener";
-        media.setAttribute("aria-label", "Abrir carta " + c.title + " en PDF");
-      }
-      var img = document.createElement("img");
-      img.src = c.image; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
-      img.width = 900; img.height = 1200;
-      img.addEventListener("error", function () { media.classList.add("is-missing"); });
-      media.appendChild(img);
-
-      var links = el("div", "tile-links");
-      if (c.ready && c.pdf) {
-        var a = el("a", "tile-link", "Ver carta");
+        var a = el("a");
         a.href = c.pdf; a.target = "_blank"; a.rel = "noopener";
-        a.setAttribute("aria-label", "Ver carta " + c.title + " en PDF" + (c.size ? ", " + c.size : ""));
-        links.appendChild(a);
+        a.setAttribute("aria-label", "Carta " + c.title + " en PDF" + (c.size ? ", " + c.size : ""));
+        a.innerHTML = ICON_DOWN;
+        a.prepend(document.createTextNode(c.title + " "));
+        a.appendChild(el("span", "meta", c.size || ""));
+        li.appendChild(a);
       } else {
-        links.append(el("span", "tile-meta", "PDF pendiente"), el("span", "sample", "Contenido de ejemplo"));
+        li.append(el("span", "meta", c.title + " · PDF pendiente"), el("span", "sample", "Contenido de ejemplo"));
       }
-      if (c.menu) {
-        var online = el("button", "tile-link alt", "En línea");
-        online.type = "button";
-        online.setAttribute("aria-label", "Ver carta " + c.title + " en línea");
-        online.addEventListener("click", function () {
-          selectCategory(c.menu);
-          document.getElementById("carta-completa").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-        });
-        links.appendChild(online);
-      }
-      tile.append(media, el("h3", null, c.title), links);
-      tilesEl.appendChild(tile);
+      pdfsEl.appendChild(li);
     });
 
     // ---------- Collage «Menú»: desplazamiento horizontal al hacer scroll ----------
