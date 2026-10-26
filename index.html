@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Positano Caffè &amp; Cucina · Cocina italiana en Chicureo</title>
   <meta name="description" content="Caffè, forno y cucina italiana en Av. Chicureo 847, Colina. Brunch desde temprano, pastas de la casa, pizzas, antipasti y coctelería. Reserva tu mesa por teléfono.">
-  <meta name="theme-color" content="#f4ede1" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#101820" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f0e9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141013" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://positano.example/"><!-- PENDIENTE: dominio definitivo -->
 
@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/hero/hero-positano-1600.webp" imagesrcset="assets/hero/hero-positano-800.webp 800w, assets/hero/hero-positano-1600.webp 1600w" imagesizes="(min-width: 900px) 58vw, 100vw">
+  <link rel="preload" as="image" href="assets/hero/hero-positano-1080.webp" imagesrcset="assets/hero/hero-positano-720.webp 720w, assets/hero/hero-positano-1080.webp 1080w" imagesizes="(min-width: 900px) 58vw, 100vw">
 
   <script type="application/ld+json">
   {
@@ -61,23 +61,23 @@
        Tokens de diseño
        ========================================================= */
     :root {
-      /* Color · luz de la costa: crema de cal, azul tirreno, terracota */
-      --c-bg: #f4ede1;
-      --c-surface: #fbf7f0;
-      --c-surface-2: #ebe2d3;
-      --c-ink: #1f1b17;
-      --c-ink-soft: #5b5248;
-      --c-line: #d8ccb9;
-      --c-sea: #1d3247;
-      --c-sea-ink: #f4ede1;
-      --c-accent: #a8471f;
-      --c-accent-hover: #8f3b18;
+      /* Color · tomado del logo y las fotos reales: carbón ciruela, oro, mármol y papel marfil */
+      --c-bg: #f4f0e9;
+      --c-surface: #faf8f4;
+      --c-surface-2: #e9e3d9;
+      --c-ink: #1d181c;
+      --c-ink-soft: #5d5459;
+      --c-line: #d9d1c4;
+      --c-dark: #231921;
+      --c-dark-ink: #f4ede4;
+      --c-accent: #7f5c2e;
+      --c-accent-hover: #694b24;
       --c-on-accent: #ffffff;
-      --c-ph: #e3d8c6;
-      --c-ph-ink: #7a6d5d;
+      --c-ph: #e4ddd1;
+      --c-ph-ink: #776c66;
       --c-sample: #7a2fbf;
       --c-focus: #1d5fa8;
-      --c-accent-on-sea: #f0a47c;
+      --c-accent-on-dark: #c99a62;
 
       /* Tipografía */
       --f-display: "Bodoni Moda", "Bodoni 72", Didot, "Libre Bodoni", Georgia, serif;
@@ -122,42 +122,42 @@
 
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --c-bg: #101820;
-        --c-surface: #16212b;
-        --c-surface-2: #1d2a36;
-        --c-ink: #efe7da;
-        --c-ink-soft: #b7ab9a;
-        --c-line: #2c3a47;
-        --c-sea: #0b1218;
-        --c-sea-ink: #efe7da;
-        --c-accent: #e08a5f;
-        --c-accent-hover: #eaa07a;
+        --c-bg: #141013;
+        --c-surface: #1c171a;
+        --c-surface-2: #241e22;
+        --c-ink: #f1ebe2;
+        --c-ink-soft: #b8ad9f;
+        --c-line: #3a3136;
+        --c-dark: #0d0a0c;
+        --c-dark-ink: #f1ebe2;
+        --c-accent: #c99a62;
+        --c-accent-hover: #d8b07c;
         --c-on-accent: #1a0f08;
-        --c-ph: #1d2a36;
-        --c-ph-ink: #8d9aa6;
+        --c-ph: #241e22;
+        --c-ph-ink: #8f8489;
         --c-sample: #c79bf2;
         --c-focus: #8cc2ff;
-        --c-accent-on-sea: #eaa07a;
+        --c-accent-on-dark: #c99a62;
         --shadow-2: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
       }
     }
     :root[data-theme="dark"] {
-      --c-bg: #101820;
-      --c-surface: #16212b;
-      --c-surface-2: #1d2a36;
-      --c-ink: #efe7da;
-      --c-ink-soft: #b7ab9a;
-      --c-line: #2c3a47;
-      --c-sea: #0b1218;
-      --c-sea-ink: #efe7da;
-      --c-accent: #e08a5f;
-      --c-accent-hover: #eaa07a;
+      --c-bg: #141013;
+      --c-surface: #1c171a;
+      --c-surface-2: #241e22;
+      --c-ink: #f1ebe2;
+      --c-ink-soft: #b8ad9f;
+      --c-line: #3a3136;
+      --c-dark: #0d0a0c;
+      --c-dark-ink: #f1ebe2;
+      --c-accent: #c99a62;
+      --c-accent-hover: #d8b07c;
       --c-on-accent: #1a0f08;
-      --c-ph: #1d2a36;
-      --c-ph-ink: #8d9aa6;
+      --c-ph: #241e22;
+      --c-ph-ink: #8f8489;
       --c-sample: #c79bf2;
       --c-focus: #8cc2ff;
-      --c-accent-on-sea: #eaa07a;
+      --c-accent-on-dark: #c99a62;
       --shadow-2: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
     }
 
@@ -233,8 +233,8 @@
     .btn:hover { --_bg: var(--c-accent-hover); --_bd: var(--c-accent-hover); }
     .btn-ghost { --_bg: transparent; --_fg: var(--c-ink); --_bd: var(--c-ink); }
     .btn-ghost:hover { --_bg: var(--c-ink); --_fg: var(--c-bg); --_bd: var(--c-ink); }
-    .btn-on-sea.btn-ghost { --_fg: var(--c-sea-ink); --_bd: var(--c-sea-ink); }
-    .btn-on-sea.btn-ghost:hover { --_bg: var(--c-sea-ink); --_fg: var(--c-sea); }
+    .btn-on-dark.btn-ghost { --_fg: var(--c-dark-ink); --_bd: var(--c-dark-ink); }
+    .btn-on-dark.btn-ghost:hover { --_bg: var(--c-dark-ink); --_fg: var(--c-dark); }
     .link-arrow {
       display: inline-flex; align-items: center; gap: var(--s-2);
       font-size: var(--fs-sm); font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
@@ -273,7 +273,10 @@
     body.nav-open .site-header::before { background: var(--c-bg); }
     .site-header.is-scrolled { border-bottom-color: var(--c-line); }
     .header-inner { display: flex; align-items: center; gap: var(--s-4); height: var(--header-h); }
-    .brand { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; margin-right: auto; }
+    .brand { display: inline-grid; grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: var(--s-3); align-items: center; text-decoration: none; line-height: 1; margin-right: auto; }
+    .brand-logo { grid-row: 1 / span 2; width: 44px; height: 44px; border-radius: 50%; }
+    .brand-name { align-self: end; }
+    .brand-sub { align-self: start; }
     .brand-name { font-family: var(--f-display); font-style: italic; font-size: 1.7rem; font-weight: 500; letter-spacing: -0.01em; }
     .brand-sub { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--c-ink-soft); margin-top: 4px; }
 
@@ -356,7 +359,7 @@
     /* =========================================================
        Cita (la usa el propio restaurante en su carta)
        ========================================================= */
-    .quote { background: var(--c-sea); color: var(--c-sea-ink); }
+    .quote { background: var(--c-dark); color: var(--c-dark-ink); }
     .quote .container { display: grid; gap: var(--s-5); padding-block: var(--s-8); }
     .quote blockquote { margin: 0; display: grid; gap: var(--s-4); max-width: 54rem; }
     .quote .q-it { font-family: var(--f-display); font-style: italic; font-size: var(--fs-md); opacity: 0.7; }
@@ -431,24 +434,24 @@
     /* =========================================================
        Carta · tarjetas de PDF + carta completa en línea
        ========================================================= */
-    .carta { background: var(--c-sea); color: var(--c-sea-ink); --c-line-sea: color-mix(in srgb, var(--c-sea-ink) 16%, transparent); }
-    .carta .eyebrow, .carta .section-head .eyebrow { color: var(--c-accent-on-sea); }
-    .carta .section-head p { color: color-mix(in srgb, var(--c-sea-ink) 72%, transparent); }
+    .carta { background: var(--c-dark); color: var(--c-dark-ink); --c-line-dark: color-mix(in srgb, var(--c-dark-ink) 16%, transparent); }
+    .carta .eyebrow, .carta .section-head .eyebrow { color: var(--c-accent-on-dark); }
+    .carta .section-head p { color: color-mix(in srgb, var(--c-dark-ink) 72%, transparent); }
 
     /* Tarjetas: una por PDF */
     .carta-cards { display: grid; gap: var(--s-4); margin-bottom: var(--s-9); }
-    @media (min-width: 760px) { .carta-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s-5); } }
+    @media (min-width: 760px) { .carta-cards { grid-template-columns: 1fr 1fr; gap: var(--s-5); } .carta-card { min-height: 480px; } }
     .carta-card {
       position: relative; display: grid; align-content: end; min-height: 420px; overflow: hidden;
-      border: 1px solid var(--c-line-sea); isolation: isolate;
+      border: 1px solid var(--c-line-dark); isolation: isolate;
     }
-    .carta-card .ph { position: absolute; inset: 0; z-index: -2; background: color-mix(in srgb, var(--c-sea-ink) 7%, var(--c-sea)); }
-    .carta-card .ph.is-missing::after { place-content: start center; padding-top: var(--s-8); color: color-mix(in srgb, var(--c-sea-ink) 55%, transparent); background-image: none; }
+    .carta-card .ph { position: absolute; inset: 0; z-index: -2; background: color-mix(in srgb, var(--c-dark-ink) 7%, var(--c-dark)); }
+    .carta-card .ph.is-missing::after { place-content: start center; padding-top: var(--s-8); color: color-mix(in srgb, var(--c-dark-ink) 55%, transparent); background-image: none; }
     .carta-card .ph img { transition: transform 900ms var(--ease); }
     .carta-card:hover .ph img { transform: scale(1.03); }
     /* Velo inferior: necesario para leer el texto sobre la fotografía */
-    .carta-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(8, 14, 20, 0.92) 0%, rgba(8, 14, 20, 0.55) 45%, rgba(8, 14, 20, 0.1) 100%); }
-    .carta-card-num { position: absolute; top: var(--s-5); left: var(--s-5); font-size: var(--fs-xs); letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-accent-on-sea); }
+    .carta-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(20, 14, 18, 0.6) 0%, transparent 22%), linear-gradient(to top, rgba(20, 14, 18, 0.95) 0%, rgba(20, 14, 18, 0.78) 38%, rgba(20, 14, 18, 0.25) 70%, rgba(20, 14, 18, 0.1) 100%); }
+    .carta-card-num { position: absolute; top: var(--s-5); left: var(--s-5); font-size: var(--fs-xs); letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-accent-on-dark); }
     .carta-card-body { display: grid; gap: var(--s-3); padding: var(--s-5); color: #f4ede1; }
     .carta-card h3 { font-size: clamp(2.2rem, 1.6rem + 2vw, 3.2rem); line-height: 1; }
     .carta-card p { font-size: var(--fs-sm); color: rgba(244, 237, 225, 0.78); max-width: 26rem; }
@@ -458,30 +461,30 @@
       background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
       font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: none;
     }
-    .carta-card-actions a:hover, .carta-card-actions button:hover { color: var(--c-accent-on-sea); }
-    .carta-card-actions svg { width: 14px; height: 14px; color: var(--c-accent-on-sea); }
+    .carta-card-actions a:hover, .carta-card-actions button:hover { color: var(--c-accent-on-dark); }
+    .carta-card-actions svg { width: 14px; height: 14px; color: var(--c-accent-on-dark); }
     .carta-card-actions .meta { color: rgba(244, 237, 225, 0.55); letter-spacing: 0.12em; }
 
     /* Carta completa */
     .menu-wrap { display: grid; gap: var(--s-6); }
     .menu-aside { display: grid; gap: var(--s-5); align-content: start; }
     .menu-aside h2 { font-size: var(--fs-2xl); line-height: 0.95; letter-spacing: -0.02em; }
-    .menu-aside .note { font-size: var(--fs-sm); color: color-mix(in srgb, var(--c-sea-ink) 72%, transparent); max-width: 22rem; }
+    .menu-aside .note { font-size: var(--fs-sm); color: color-mix(in srgb, var(--c-dark-ink) 72%, transparent); max-width: 22rem; }
     .menu-cats {
       display: flex; overflow-x: auto; scrollbar-width: none; gap: var(--s-2);
       margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
-      border-top: 1px solid var(--c-line-sea); border-bottom: 1px solid var(--c-line-sea);
+      border-top: 1px solid var(--c-line-dark); border-bottom: 1px solid var(--c-line-dark);
     }
     .menu-cats::-webkit-scrollbar { display: none; }
     .menu-cat {
       flex: 0 0 auto; display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
       min-height: 56px; padding: var(--s-3) var(--s-3); background: none; border: 0; cursor: pointer;
-      color: color-mix(in srgb, var(--c-sea-ink) 55%, transparent); text-align: left;
+      color: color-mix(in srgb, var(--c-dark-ink) 55%, transparent); text-align: left;
     }
     .menu-cat .n { font-family: var(--f-display); font-size: 1.5rem; font-weight: 500; }
     .menu-cat .l { display: none; font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; }
-    .menu-cat:hover { color: var(--c-sea-ink); }
-    .menu-cat[aria-selected="true"] { color: var(--c-accent-on-sea); }
+    .menu-cat:hover { color: var(--c-dark-ink); }
+    .menu-cat[aria-selected="true"] { color: var(--c-accent-on-dark); }
     .menu-cat[aria-selected="true"] .n { font-style: italic; }
 
     .menu-main { min-width: 0; }
@@ -492,25 +495,25 @@
     .menu-chips::-webkit-scrollbar { display: none; }
     .menu-chips a {
       flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4);
-      border: 1px solid var(--c-line-sea); text-decoration: none; white-space: nowrap;
+      border: 1px solid var(--c-line-dark); text-decoration: none; white-space: nowrap;
       font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: color-mix(in srgb, var(--c-sea-ink) 72%, transparent);
+      color: color-mix(in srgb, var(--c-dark-ink) 72%, transparent);
       transition: border-color 200ms var(--ease), color 200ms var(--ease);
     }
-    .menu-chips a:hover { border-color: var(--c-accent-on-sea); color: var(--c-sea-ink); }
+    .menu-chips a:hover { border-color: var(--c-accent-on-dark); color: var(--c-dark-ink); }
 
     .menu-sec { scroll-margin-top: calc(var(--header-h) + 16px); }
     .menu-sec + .menu-sec { margin-top: var(--s-8); }
     .menu-sec-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-5); margin-bottom: var(--s-5); }
     .menu-sec-head h3 { font-size: var(--fs-xl); }
-    .menu-sec-head .rule { flex: 1 1 3rem; height: 1px; background: var(--c-line-sea); }
-    .menu-sec-head .tag { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in srgb, var(--c-sea-ink) 55%, transparent); }
+    .menu-sec-head .rule { flex: 1 1 3rem; height: 1px; background: var(--c-line-dark); }
+    .menu-sec-head .tag { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in srgb, var(--c-dark-ink) 55%, transparent); }
     .menu-items { display: grid; column-gap: var(--s-8); }
-    .mi { display: grid; gap: var(--s-2); padding-block: var(--s-4); border-bottom: 1px solid var(--c-line-sea); align-content: start; }
+    .mi { display: grid; gap: var(--s-2); padding-block: var(--s-4); border-bottom: 1px solid var(--c-line-dark); align-content: start; }
     .mi-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); }
     .mi h4 { font-family: var(--f-body); font-size: 0.92rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
-    .mi .price { color: var(--c-accent-on-sea); font-weight: 500; font-size: var(--fs-sm); letter-spacing: 0.02em; }
-    .mi p { font-size: var(--fs-sm); color: color-mix(in srgb, var(--c-sea-ink) 68%, transparent); }
+    .mi .price { color: var(--c-accent-on-dark); font-weight: 500; font-size: var(--fs-sm); letter-spacing: 0.02em; }
+    .mi p { font-size: var(--fs-sm); color: color-mix(in srgb, var(--c-dark-ink) 68%, transparent); }
 
     @media (min-width: 760px) {
       .menu-items { grid-template-columns: 1fr 1fr; }
@@ -521,8 +524,8 @@
       .menu-aside { position: sticky; top: calc(var(--header-h) + var(--s-5)); min-width: 0; }
       .menu-aside h2 { font-size: clamp(2.6rem, 1rem + 2.6vw, 4.2rem); }
       .menu-cats { flex-direction: column; overflow: visible; margin: 0; padding: 0; gap: 0; border-top: 0; border-bottom: 0; }
-      .menu-cat { border-top: 1px solid var(--c-line-sea); padding: var(--s-4) var(--s-2); width: 100%; }
-      .menu-cat:last-child { border-bottom: 1px solid var(--c-line-sea); }
+      .menu-cat { border-top: 1px solid var(--c-line-dark); padding: var(--s-4) var(--s-2); width: 100%; }
+      .menu-cat:last-child { border-bottom: 1px solid var(--c-line-dark); }
       .menu-cat .n { font-size: 1.75rem; }
       .menu-cat .l { display: inline; }
     }
@@ -554,10 +557,10 @@
     /* =========================================================
        Visítanos / reservas
        ========================================================= */
-    .visit { background: var(--c-sea); color: var(--c-sea-ink); }
+    .visit { background: var(--c-dark); color: var(--c-dark-ink); }
     .visit .eyebrow { color: var(--c-accent); }
-    .visit .eyebrow { color: var(--c-accent-on-sea); }
-    .visit .section-head p { color: color-mix(in srgb, var(--c-sea-ink) 75%, transparent); }
+    .visit .eyebrow { color: var(--c-accent-on-dark); }
+    .visit .section-head p { color: color-mix(in srgb, var(--c-dark-ink) 75%, transparent); }
     .visit-grid { display: grid; gap: var(--s-7); }
     .visit-info { display: grid; gap: var(--s-6); align-content: start; }
     .info-block { display: grid; gap: var(--s-2); }
@@ -566,10 +569,10 @@
     .info-big a { text-decoration: none; border-bottom: 1px solid color-mix(in srgb, currentColor 40%, transparent); }
     .info-big a:hover { border-bottom-color: currentColor; }
     .hours { display: grid; gap: var(--s-2); font-size: var(--fs-sm); }
-    .hours div { display: flex; justify-content: space-between; gap: var(--s-4); border-bottom: 1px solid color-mix(in srgb, var(--c-sea-ink) 18%, transparent); padding-bottom: var(--s-2); }
+    .hours div { display: flex; justify-content: space-between; gap: var(--s-4); border-bottom: 1px solid color-mix(in srgb, var(--c-dark-ink) 18%, transparent); padding-bottom: var(--s-2); }
     .hours dt { opacity: 0.8; } .hours dd { margin: 0; font-weight: 600; text-align: right; }
     .visit-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
-    .map { position: relative; aspect-ratio: 4 / 3; background: color-mix(in srgb, var(--c-sea-ink) 8%, transparent); }
+    .map { position: relative; aspect-ratio: 4 / 3; background: color-mix(in srgb, var(--c-dark-ink) 8%, transparent); }
     .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(0.35) contrast(1.05); }
 
     .reserve {
@@ -598,6 +601,7 @@
        Footer
        ========================================================= */
     .site-footer { padding-block: var(--s-8) var(--s-7); border-top: 1px solid var(--c-line); }
+    .footer-logo { width: 96px; height: 96px; border-radius: 50%; margin-bottom: var(--s-5); }
     .footer-mark { font-family: var(--f-display); font-style: italic; font-size: clamp(3.5rem, 2rem + 9vw, 10rem); line-height: 0.9; letter-spacing: -0.03em; }
     .footer-mark span { display: block; font-style: normal; font-family: var(--f-body); font-size: var(--fs-xs); letter-spacing: 0.4em; text-transform: uppercase; margin-top: var(--s-4); color: var(--c-ink-soft); }
     .footer-grid { display: grid; gap: var(--s-6); margin-top: var(--s-7); font-size: var(--fs-sm); }
@@ -637,17 +641,17 @@
 <body>
   <!--
     PENDIENTES ANTES DE PUBLICAR (detalle en docs/pendientes.md)
-    · Fotografías reales en /assets (cada hueco muestra la ruta esperada).
+    · Fotografías faltantes en /assets (cada hueco muestra la ruta esperada).
     · Hora de cierre por día.
     · Número de WhatsApp (CONFIG.whatsapp.number) — hoy vacío: los botones .js-wa están ocultos.
-    · PDFs de las cartas (CONFIG.cartas: subir a assets/carta/ y marcar ready: true).
-    · Dominio definitivo (canonical / og:url) y logotipo oficial.
+    · Dominio definitivo (canonical / og:url).
   -->
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="Positano Caffè &amp; Cucina, volver al inicio">
+        <img class="brand-logo" src="assets/identidad/logo-positano.webp" alt="" width="44" height="44">
         <span class="brand-name">Positano</span>
         <span class="brand-sub">Caffè &amp; Cucina</span>
       </a>
@@ -683,13 +687,13 @@
     <!-- ===== Portada ===== -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="container hero-grid">
-        <figure class="ph hero-media" data-file="assets/hero/hero-positano-1600.webp">
+        <figure class="ph hero-media" data-file="assets/hero/hero-positano-1080.webp">
           <img
-            src="assets/hero/hero-positano-1600.webp"
-            srcset="assets/hero/hero-positano-800.webp 800w, assets/hero/hero-positano-1600.webp 1600w"
+            src="assets/hero/hero-positano-1080.webp"
+            srcset="assets/hero/hero-positano-720.webp 720w, assets/hero/hero-positano-1080.webp 1080w"
             sizes="(min-width: 900px) 58vw, 100vw"
-            alt="Mesa servida en Positano con pastas de la casa, pizza y spritz"
-            width="1600" height="2000" fetchpriority="high" decoding="async">
+            alt="Plato de pasta en mesa de mármol negro, sobre el individual ilustrado de Positano"
+            width="1080" height="720" fetchpriority="high" decoding="async">
           <figcaption>Av. Chicureo 847 · Colina</figcaption>
         </figure>
 
@@ -732,7 +736,7 @@
         <div class="moments">
           <article class="moment reveal">
             <figure class="ph" data-file="assets/ambiente/mattina-brunch.webp">
-              <img src="assets/ambiente/mattina-brunch.webp" alt="Brunch con huevos benedictinos, focaccia y café" width="900" height="1125" loading="lazy" decoding="async">
+              <img src="assets/ambiente/mattina-brunch.webp" alt="Tostada con prosciutto, huevo, palta y tomate cherry en plato de gres oscuro" width="900" height="1125" loading="lazy" decoding="async">
             </figure>
             <div class="moment-time"><span class="num">i.</span><span class="eyebrow">Mattina · hasta 12:30</span></div>
             <h3>Caffè &amp; brunch</h3>
@@ -746,7 +750,7 @@
 
           <article class="moment reveal">
             <figure class="ph" data-file="assets/ambiente/pranzo-pastas.webp">
-              <img src="assets/ambiente/pranzo-pastas.webp" alt="Pastas de la casa servidas al almuerzo" width="900" height="1125" loading="lazy" decoding="async">
+              <img src="assets/ambiente/pranzo-pastas.webp" alt="Pasta al pomodoro servida sobre el individual de Positano" width="900" height="600" loading="lazy" decoding="async">
             </figure>
             <div class="moment-time"><span class="num">ii.</span><span class="eyebrow">Pranzo · desde 13:00</span></div>
             <h3>Cucina italiana</h3>
@@ -918,16 +922,16 @@
             <figcaption>El salón</figcaption>
           </figure>
           <figure class="g-b reveal">
-            <div class="ph" data-file="assets/galeria/barra-cafe.webp"><img src="assets/galeria/barra-cafe.webp" alt="Barra de café con máquina de espresso" width="800" height="1000" loading="lazy" decoding="async"></div>
-            <figcaption>La barra de café</figcaption>
+            <div class="ph" data-file="assets/galeria/nikkei-ramen.webp"><img src="assets/galeria/nikkei-ramen.webp" alt="Bowl con carne, fideos y huevo marinado sobre mármol negro" width="800" height="1066" loading="lazy" decoding="async"></div>
+            <figcaption>Desde la cocina</figcaption>
           </figure>
           <figure class="g-c reveal">
             <div class="ph" data-file="assets/galeria/detalle-mesa.webp"><img src="assets/galeria/detalle-mesa.webp" alt="Detalle de una mesa puesta" width="600" height="900" loading="lazy" decoding="async"></div>
             <figcaption>Detalle de mesa</figcaption>
           </figure>
           <figure class="g-d reveal">
-            <div class="ph" data-file="assets/galeria/terraza.webp"><img src="assets/galeria/terraza.webp" alt="Mesas exteriores de Positano" width="1200" height="750" loading="lazy" decoding="async"></div>
-            <figcaption>Exterior <span class="sample">Contenido de ejemplo</span></figcaption>
+            <div class="ph" data-file="assets/galeria/pasillo-boveda.webp"><img src="assets/galeria/pasillo-boveda.webp" alt="Pasillo con muros y bóveda de piedra iluminado por faroles" width="1400" height="933" loading="lazy" decoding="async"></div>
+            <figcaption>La bóveda de piedra</figcaption>
           </figure>
           <figure class="g-e reveal">
             <div class="ph" data-file="assets/galeria/emporio.webp"><img src="assets/galeria/emporio.webp" alt="Vitrina del emporio con quesos y fiambres italianos" width="1000" height="750" loading="lazy" decoding="async"></div>
@@ -972,7 +976,7 @@
             </div>
             <div class="visit-actions">
               <a class="btn" data-link="tel" href="tel:+56229547040">Llamar y reservar</a>
-              <a class="btn btn-ghost btn-on-sea" data-link="directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Av.%20Chicureo%20847%2C%20Colina%2C%20Chile" target="_blank" rel="noopener">Cómo llegar</a>
+              <a class="btn btn-ghost btn-on-dark" data-link="directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Av.%20Chicureo%20847%2C%20Colina%2C%20Chile" target="_blank" rel="noopener">Cómo llegar</a>
             </div>
           </div>
 
@@ -1017,6 +1021,7 @@
 
   <footer class="site-footer">
     <div class="container">
+      <img class="footer-logo" src="assets/identidad/logo-positano.webp" alt="Logotipo de Ristorante Positano, Caffè e Cucina" width="120" height="120" loading="lazy">
       <p class="footer-mark" aria-hidden="true">Positano<span>Caffè &amp; Cucina · Chicureo</span></p>
       <div class="footer-grid">
         <div>
@@ -1083,26 +1088,33 @@
     },
     // Una tarjeta por PDF. ready: false = el PDF aún no está subido; la tarjeta
     // muestra «PDF pendiente» y solo ofrece ver la carta en línea.
+    // Una tarjeta por PDF (assets/carta/). ready: false = aún no publicado:
+    // la tarjeta muestra «PDF pendiente». menu: categoría de MENU que abre «Ver en línea» (null = sin versión en línea).
     cartas: [
       {
-        id: "cucina", title: "Cucina", menu: "cucina",
+        title: "Cucina", menu: "cucina",
         text: "Antipasti, pastas de la casa, risottos, pizzas, ensaladas y dolci.",
-        pdf: "assets/carta/carta-cucina.pdf", size: "0,9 MB", ready: false,
+        pdf: "assets/carta/carta-cucina.pdf", size: "0,9 MB", ready: true,
         image: "assets/carta/portada-cucina.webp"
       },
       {
-        id: "colazioni", title: "Colazioni", menu: "colazioni",
+        title: "Colazioni", menu: "colazioni",
         text: "Brunch, huevos, tostadas y cafetería, hasta las 12:30.",
-        pdf: "assets/carta/carta-brunch.pdf", size: "0,2 MB", ready: false,
+        pdf: "assets/carta/carta-brunch.pdf", size: "0,2 MB", ready: true,
         image: "assets/carta/portada-brunch.webp"
       },
       {
-        id: "bar", title: "Bar", menu: "bar",
+        title: "Bar", menu: "bar",
         text: "Spritz, coctelería clásica y de autor, cervezas y vinos chilenos.",
-        pdf: "assets/carta/carta-bar.pdf", size: "0,2 MB", ready: false,
+        pdf: "assets/carta/carta-bar.pdf", size: "0,2 MB", ready: true,
         image: "assets/carta/portada-bar.webp"
+      },
+      {
+        title: "Nikkei", menu: null,
+        text: "Para picar, nigiris, sashimis, temakis, hosomakis y gohan.",
+        pdf: "assets/carta/carta-nikkei.pdf", size: "1,7 MB", ready: true,
+        image: "assets/carta/portada-nikkei.webp"
       }
-      // PENDIENTE: «Carta Positano Nikkei» existe en Drive. Agregarla aquí solo si se sirve en este local.
     ],
     showPrices: true
   };
@@ -1649,13 +1661,15 @@
         pending.title = "PDF pendiente: " + c.pdf;
         actions.append(el("span", "meta", "PDF pendiente"), pending);
       }
-      var online = el("button", null, "Ver en línea →");
-      online.type = "button";
-      online.addEventListener("click", function () {
-        selectCategory(c.menu);
-        document.getElementById("carta-completa").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-      });
-      actions.appendChild(online);
+      if (c.menu) {
+        var online = el("button", null, "Ver en línea →");
+        online.type = "button";
+        online.addEventListener("click", function () {
+          selectCategory(c.menu);
+          document.getElementById("carta-completa").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        });
+        actions.appendChild(online);
+      }
       body.appendChild(actions);
 
       card.append(el("span", "carta-card-num", "Carta " + String(i + 1).padStart(2, "0")), ph, body);

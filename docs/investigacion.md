@@ -41,8 +41,12 @@ Ninguna afirmación de diseño de las referencias proviene de haber visto sus p�
 ## Dirección artística
 
 - **Principal:** editorial y diurna (luz de la costa amalfitana), no club nocturno.
-- **Paleta:** crema `#f4ede1`, marfil `#fbf7f0`, tinta cálida `#1f1b17`, azul tirreno `#1d3247` (bandas de cita y reservas), terracota `#a8471f` (único acento y CTA). Modo oscuro derivado del azul.
-  *Provisional:* no se pudo verificar contra el Instagram. Si la identidad real usa otro acento (p. ej. amarillo limón o azul mayólica), solo hay que cambiar `--c-accent` y `--c-sea`.
+- **Paleta (26-oct, ajustada a la identidad real):** el logo (círculo carbón ciruela `#231921` con letras doradas `#c99a62` y arcos tricolor) y las fotos (mesas de mármol negro, gres oscuro, individuales de papel con el mapa de Positano, bóveda de piedra con faroles) reemplazan la paleta provisional crema, azul y terracota.
+  - Bandas oscuras (`--c-dark`): carbón ciruela del logo.
+  - Acento sobre oscuro (`--c-accent-on-dark`): oro del logo.
+  - Fondo claro (`--c-bg`): marfil de papel `#f4f0e9`.
+  - Acento sobre claro (`--c-accent`): bronce `#7f5c2e`, el oro oscurecido para cumplir el contraste AA.
+  - El tricolor queda solo en el logo, sin competir.
 - **Tipografía:** Bodoni Moda (títulos, cursiva como acento) + Instrument Sans (texto e interfaz).
 - **Composición:** portada partida (texto 11 / foto 13), momentos escalonados, platos en grilla asimétrica (carrusel deslizable en móvil), galería con tamaños intencionales.
 - **Restricciones:** sin tarjetas redondeadas, sin degradados, sin iconos decorativos (solo el del modo claro/oscuro), animación limitada a un revelado corto y desactivada con `prefers-reduced-motion`.
