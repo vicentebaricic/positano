@@ -24,8 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/hero/hero-mesa-1080.webp" media="(min-width: 900px)">
-  <link rel="preload" as="image" href="assets/hero/hero-cafe-poster.webp" media="(max-width: 899px)">
+  <link rel="preload" as="image" href="assets/hero/hero-referencia-poster.webp">
 
   <script type="application/ld+json">
   {
@@ -364,7 +363,6 @@
     .hero-bg img, .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     /* Velo para leer el titular blanco sobre la imagen */
     .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20, 14, 18, 0.6) 0%, rgba(20, 14, 18, 0.32) 45%, rgba(20, 14, 18, 0.62) 100%); }
-    .hero-photo { display: none; }
     .hero-content { display: grid; justify-items: center; gap: var(--s-5); text-align: center; padding-block: calc(var(--header-h) + var(--s-6)) var(--s-8); }
     .hero-logo { width: clamp(84px, 8vw, 124px); height: auto; border-radius: 50%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35); }
     .hero-kicker { font-size: var(--fs-xs); letter-spacing: 0.24em; text-transform: uppercase; opacity: 0.85; text-wrap: balance; }
@@ -384,11 +382,8 @@
     .video-toggle:hover { background: rgba(20, 14, 18, 0.75); }
     .video-toggle .vt-play, .video-toggle[aria-pressed="true"] .vt-pause { display: none; }
     .video-toggle[aria-pressed="true"] .vt-play { display: inline; }
-    /* El video es vertical: a pantalla completa solo en móvil; en escritorio, la foto */
-    @media (min-width: 900px) {
-      .hero-photo { display: block; }
-      .hero-bg video, .hero .video-toggle { display: none; }
-    }
+    .hero-sample { position: absolute; left: var(--gutter); bottom: var(--s-5); z-index: 1; background: rgba(255, 255, 255, 0.92); }
+    @media (max-width: 899px) { .hero-sample { bottom: calc(var(--s-5) + 52px); right: var(--gutter); white-space: normal; line-height: 1.35; } }
 
     /* =========================================================
        Bienvenida centrada (referencia: Eat Greek)
@@ -546,6 +541,7 @@
     .carousel-track figure { margin: 0; display: grid; gap: var(--s-2); }
     .carousel-track .ph { aspect-ratio: 7 / 10; }
     .carousel-track figcaption { font-size: var(--fs-xs); color: var(--c-ink-soft); letter-spacing: 0.04em; }
+    .carousel-note { margin-top: var(--s-3); font-size: var(--fs-xs); color: var(--c-ink-soft); }
     .g-more { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: var(--s-3); margin-top: var(--s-7); text-align: center; }
     .g-more p { font-family: var(--f-display); font-size: var(--fs-lg); line-height: 1.3; }
     @media (min-width: 760px) { .carousel-track { grid-auto-columns: calc((100% - 16px) / 3); } }
@@ -656,12 +652,6 @@
   <!-- Ilustraciones de cabecera: dibujos originales de un solo color (currentColor) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-    <symbol id="orn-espresso" viewBox="0 0 160 100" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M36 86 C 60 96, 100 96, 124 86"/>
-      <path d="M54 58 H 106 C 104 78, 94 87, 80 87 C 66 87, 56 78, 54 58 Z"/>
-      <path d="M105 64 C 117 62, 119 77, 101 78"/>
-      <path d="M71 48 C 65 40, 77 34, 71 24 M 87 48 C 81 40, 93 34, 87 24"/>
-    </symbol>
     <symbol id="orn-limonero" viewBox="0 0 160 100" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M14 80 C 44 70, 84 52, 146 24"/>
       <path d="M58 63 C 57 48, 68 37, 84 32 C 81 47, 72 57, 58 63 Z" fill="currentColor" fill-opacity=".14"/>
@@ -741,12 +731,13 @@
     <!-- ===== Portada: pantalla completa (foto en escritorio, video vertical en móvil) ===== -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero-bg">
-        <img class="hero-photo" src="assets/hero/hero-mesa-1080.webp" alt="" width="1080" height="720" fetchpriority="high" decoding="async">
-        <!-- Sin autoplay en el HTML: el JS lo inicia solo en móvil, sin «reducir movimiento» ni ahorro de datos -->
-        <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero/hero-cafe-poster.webp"
-          width="540" height="960" aria-label="Preparación de café en la barra de Positano: molienda, espresso y latte art">
-          <source src="assets/hero/hero-cafe.webm" type="video/webm">
-          <source src="assets/hero/hero-cafe.mp4" type="video/mp4">
+        <!-- PROVISIONAL: video de Eat Greek usado como referencia (pedido del usuario). Reemplazar antes de publicar.
+             Video propio de Positano listo para usar: assets/hero/hero-cafe.webm / .mp4 (vertical) y foto assets/hero/hero-mesa-1080.webp -->
+        <!-- Sin autoplay en el HTML: el JS lo inicia salvo con «reducir movimiento» o ahorro de datos -->
+        <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero/hero-referencia-poster.webp"
+          width="640" height="360" aria-label="Video de referencia provisional: preparación y emplatado de platos">
+          <source src="assets/hero/hero-referencia.webm" type="video/webm">
+          <source src="assets/hero/hero-referencia.mp4" type="video/mp4">
         </video>
       </div>
       <div class="container hero-content">
@@ -758,6 +749,7 @@
           <a class="btn btn-outline-light" href="#carta">Ver la carta</a>
         </div>
       </div>
+      <span class="sample hero-sample">Contenido de ejemplo · video de referencia, reemplazar</span>
       <button class="video-toggle" type="button" aria-pressed="false" hidden>
         <span class="vt-pause">Pausar video</span><span class="vt-play">Reproducir video</span>
       </button>
@@ -766,7 +758,6 @@
     <!-- ===== Bienvenida ===== -->
     <section class="section welcome" id="bienvenida" aria-labelledby="welcome-title">
       <div class="container welcome-inner reveal">
-        <svg class="ornament" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><use href="#orn-espresso"/></svg>
         <h2 id="welcome-title">Bienvenidos a <span class="it">Positano</span></h2>
         <p>Caffè, forno y cucina italiana en Av. Chicureo 847. Abrimos temprano con café Mauro y brunch; al mediodía, antipasti para compartir, pastas de la casa, risottos y pizzas; y para cerrar, spritz, vinos y coctelería de autor.</p>
         <blockquote>
@@ -847,11 +838,18 @@
           <ul class="carousel-track" id="carousel-track" tabindex="0" aria-label="Fotos de Positano">
             <li><figure><div class="ph" data-file="assets/galeria/pasillo-boveda.webp"><img src="assets/galeria/pasillo-boveda.webp" alt="Pasillo con muros y bóveda de piedra iluminado por faroles" width="1400" height="933" loading="lazy" decoding="async"></div><figcaption>La bóveda de piedra</figcaption></figure></li>
             <li><figure><div class="ph" data-file="assets/galeria/nikkei-ramen.webp"><img src="assets/galeria/nikkei-ramen.webp" alt="Bowl con carne, fideos y huevo marinado sobre mármol negro" width="800" height="1066" loading="lazy" decoding="async"></div><figcaption>Desde la cocina</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/salon-principal.webp"><img src="assets/galeria/salon-principal.webp" alt="Salón principal de Positano con mesas servidas" width="1000" height="1430" loading="lazy" decoding="async"></div><figcaption>El salón</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/detalle-mesa.webp"><img src="assets/galeria/detalle-mesa.webp" alt="Detalle de mesa con el individual ilustrado de Positano" width="1000" height="1430" loading="lazy" decoding="async"></div><figcaption>Detalle de mesa</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/barra-cafe.webp"><img src="assets/galeria/barra-cafe.webp" alt="Barra de café con tazas Caffè Mauro" width="1000" height="1430" loading="lazy" decoding="async"></div><figcaption>La barra de café</figcaption></figure></li>
-            <li><figure><div class="ph" data-file="assets/galeria/emporio.webp"><img src="assets/galeria/emporio.webp" alt="Vitrina del emporio con quesos y fiambres italianos" width="1000" height="1430" loading="lazy" decoding="async"></div><figcaption>El emporio</figcaption></figure></li>
+            <!-- PROVISIONAL: fotos de Eat Greek usadas como referencia (pedido del usuario). Reemplazar por fotos de Positano antes de publicar -->
+            <li><figure><div class="ph" data-file="assets/galeria/pizzafire.avif"><img src="assets/galeria/pizzafire.avif" alt="Foto de referencia provisional: Horno con fuego a la vista" width="887" height="980" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/eat-greek-jbr-table.webp"><img src="assets/galeria/eat-greek-jbr-table.webp" alt="Foto de referencia provisional: Mesa en una terraza junto al mar" width="1000" height="1499" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-frape-coffee.avif"><img src="assets/galeria/greek-frape-coffee.avif" alt="Foto de referencia provisional: Café frappé servido en vaso alto" width="667" height="1000" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/grilled-calamari-7.avif"><img src="assets/galeria/grilled-calamari-7.avif" alt="Foto de referencia provisional: Calamar a la parrilla" width="560" height="800" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-beef-fillet.avif"><img src="assets/galeria/greek-beef-fillet.avif" alt="Foto de referencia provisional: Filete de res con salsas" width="560" height="800" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/beetroot-salad-2.avif"><img src="assets/galeria/beetroot-salad-2.avif" alt="Foto de referencia provisional: Ensalada de betarraga" width="569" height="737" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-salad-2-1.avif"><img src="assets/galeria/greek-salad-2-1.avif" alt="Foto de referencia provisional: Ensalada con queso feta" width="498" height="600" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/greek-doughnuts.avif"><img src="assets/galeria/greek-doughnuts.avif" alt="Foto de referencia provisional: Buñuelos con miel" width="560" height="713" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
+            <li><figure><div class="ph" data-file="assets/galeria/ice-tea-with-figs-eat-greek.avif"><img src="assets/galeria/ice-tea-with-figs-eat-greek.avif" alt="Foto de referencia provisional: Té helado con higos" width="400" height="498" loading="lazy" decoding="async"></div><figcaption>Foto de referencia</figcaption></figure></li>
           </ul>
+          <p class="carousel-note"><span class="sample">Contenido de ejemplo</span> Desde la tercera foto: imágenes de referencia, reemplazar por fotos de Positano.</p>
         </div>
 
         <div class="g-more reveal">
@@ -1425,7 +1423,7 @@
       }
     });
 
-    // ---------- Video de portada (solo móvil: el video es vertical) ----------
+    // ---------- Video de portada ----------
     var video = document.querySelector(".hero-video");
     var vToggle = document.querySelector(".video-toggle");
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1434,8 +1432,8 @@
     var userPaused = false;
     function syncHeroVideo() {
       if (!video) return;
-      var allowed = mobileMq.matches && !reduceMotion && !saveData;
-      vToggle.hidden = !mobileMq.matches;
+      var allowed = !reduceMotion && !saveData;
+      vToggle.hidden = false;
       if (allowed && !userPaused) {
         video.preload = "auto";
         var p = video.play();
@@ -1454,7 +1452,6 @@
       });
     }
     syncHeroVideo();
-    mobileMq.addEventListener("change", syncHeroVideo);
 
     // ---------- Encabezado y barra móvil ----------
     var header = document.querySelector(".site-header");

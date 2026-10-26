@@ -69,3 +69,9 @@ En `assets/galeria/` hay fotos descargadas de la web de Eat Greek: `introduction
 
 - **En uso, de forma provisional:** `introduction-image.avif` en la sección «Fatto in casa», marcada con la etiqueta «Contenido de ejemplo · foto de referencia, reemplazar». Antes de publicar, reemplázala por una foto de Positano. Ya existe una lista: `assets/ambiente/hecho-en-casa.webp` (la tostada del brunch). Lo ideal sería una foto de manos emplatando un plato de Positano, como el carpaccio o el polpo e patate.
 - **Sin usar:** las demás. Conviene borrarlas del repositorio antes de publicarlo.
+
+### Actualización (26-oct): más material de referencia en uso, por pedido del usuario
+
+- **Portada:** video de Eat Greek (`assets/hero/hero-referencia.webm/.mp4`; original en `assets/originales/video/eatgreek-vid-original.mp4`), en móvil y escritorio, con la etiqueta «Contenido de ejemplo · video de referencia, reemplazar». Además es de baja resolución (640×360). El video propio de Positano sigue listo en `assets/hero/hero-cafe.*`, igual que la foto `hero-mesa-1080.webp`.
+- **Dentro de Positano:** el carrusel tiene las 2 fotos reales (bóveda y ramen) y 9 fotos de Eat Greek con el pie «Foto de referencia» y la etiqueta de contenido de ejemplo. Se quitaron los huecos de foto pendiente del carrusel. Siguen faltando fotos propias del salón, un detalle de mesa, la barra de café y el emporio.
+- Antes de publicar: reemplazar todo el material de Eat Greek y borrarlo del repositorio.
